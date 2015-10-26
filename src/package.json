@@ -1,0 +1,9 @@
+{
+  "name": "Mattermost",
+  "version": "0.1.0",
+  "main": "main.js",
+  "devDependencies": {
+    "electron-packager": "^5.1.0",
+    "electron-prebuilt": "^0.34.1"
+  }
+}

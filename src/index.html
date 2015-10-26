@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Mattermost</title>
+  <style>
+    webview {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+  <script>
+    // force load electron
+    process.versions['electron']
+  </script>
+  <script src='menu.js'></script>
+  <script src='load-src.js'></script>
+  </head>
+  <body>
+    <webview id='mattermost-remote' src partition='persist:mattermost'></webview>
+  </body>
+</html>
