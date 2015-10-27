@@ -14,27 +14,27 @@ electrify: node_modules/electron-prebuilt node_modules/electron-packager
 run:
 	./node_modules/.bin/electron src
 
-dist/Mattermost-darwin-x64/Mattermost.app: $(SRC) $(RES)
+dist/Matterfront-darwin-x64/Matterfront.app: $(SRC) $(RES)
 	mkdir -p dist
-	node_modules/.bin/electron-packager src Mattermost --platform=darwin --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-bundle-id=org.mattermost.app --app-version=0.1.0 --helper-bundle-id=org.mattermost.app.helper --asar --overwrite
+	node_modules/.bin/electron-packager src Matterfront --platform=darwin --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-bundle-id=org.matterfront.app --app-version=0.1.0 --helper-bundle-id=org.matterfront.app.helper --asar --overwrite
 
-dist/Mattermost-win32-x64/Mattermost.exe: $(SRC) $(RES)
+dist/Matterfront-win32-x64/Matterfront.exe: $(SRC) $(RES)
 	mkdir -p dist
-	node_modules/.bin/electron-packager src Mattermost --platform=win32 --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
+	node_modules/.bin/electron-packager src Matterfront --platform=win32 --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
 
-dist: electrify dist/Mattermost-darwin-x64/Mattermost.app dist/Mattermost-win32-x64/Mattermost.exe
+dist: electrify dist/Matterfront-darwin-x64/Matterfront.app dist/Matterfront-win32-x64/Matterfront.exe
 
-dist/Mattermost-darwin-x64.zip: dist/Mattermost-darwin-x64
+dist/Matterfront-darwin-x64.zip: dist/Matterfront-darwin-x64
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
 
-dist/Mattermost-win32-x64.zip: dist/Mattermost-win32-x64
+dist/Matterfront-win32-x64.zip: dist/Matterfront-win32-x64
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
 
-zip: dist/Mattermost-darwin-x64.zip dist/Mattermost-win32-x64.zip
+zip: dist/Matterfront-darwin-x64.zip dist/Matterfront-win32-x64.zip
 
-install: dist/Mattermost-darwin-x64
-	rm -rf /Applications/Mattermost.app
-	ditto dist/Mattermost-darwin-x64/Mattermost.app /Applications/Mattermost.app
+install: dist/Matterfront-darwin-x64
+	rm -rf /Applications/Matterfront.app
+	ditto dist/Matterfront-darwin-x64/Matterfront.app /Applications/Matterfront.app
 
 clean:
 	rm -rf dist/*
