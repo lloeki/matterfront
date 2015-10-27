@@ -1,4 +1,4 @@
-# Mattermost app
+# Matterfront
 
 An application for [Mattermost](https://mattermost.org) for OS X, Windows, and Linux, powered by [Electron](https//electron.atom.io).
 
@@ -36,3 +36,7 @@ This is useful to distribute the application preconfigured inside your company.
 - optionally, `make zip` will compress the files for you.
 
 In the future, doing this will lock the app into using only the configured URL.
+
+## Name and affiliation
+
+Matterfront is a **Matter**most **front**end application. This application is in no way affiliated with nor endorsed by Mattermost. See [Mattermost branding guidelines](http://www.mattermost.org/brand-guidelines/).
