@@ -18,6 +18,14 @@
   </script>
   <script src='menu.js'></script>
   <script src='load-src.js'></script>
+  <script>
+    onload = function() {
+      var webview = document.getElementById("mattermost-remote");
+      webview.addEventListener('new-window', function(e) {
+         require('shell').openExternal(e.url);
+       });
+    }
+  </script>
   </head>
   <body>
     <webview id='mattermost-remote' src partition='persist:mattermost'></webview>
