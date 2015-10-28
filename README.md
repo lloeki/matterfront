@@ -1,6 +1,6 @@
 # Matterfront
 
-An application for [Mattermost](https://mattermost.org) for OS X, Windows, and Linux, powered by [Electron](https://electron.atom.io).
+An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Linux, powered by [Electron](http://electron.atom.io).
 
 ![screenshot on OS X](https://cloud.githubusercontent.com/assets/75445/10773661/f6ba012e-7cfc-11e5-9873-e685ea80c860.png)
 
