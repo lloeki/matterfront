@@ -2,3 +2,4 @@
 /dist
 /config.json
 /src/config.json
+.tag*
