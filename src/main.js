@@ -67,6 +67,10 @@ app.on('ready', function() {
     mainWindow.hide();
   });
 
+  mainWindow.webContents.on('will-navigate', function (e) {
+      e.preventDefault();
+  });
+
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
