@@ -22,7 +22,11 @@ dist/Matterfront-win32-x64/Matterfront.exe: $(SRC) $(RES)
 	mkdir -p dist
 	node_modules/.bin/electron-packager src Matterfront --platform=win32 --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
 
-dist: electrify dist/Matterfront-darwin-x64/Matterfront.app dist/Matterfront-win32-x64/Matterfront.exe
+dist/Matterfront-linux-x64/Matterfront: $(SRC) $(RES)
+	mkdir -p dist
+	node_modules/.bin/electron-packager src Matterfront --platform=linux --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
+
+dist: electrify dist/Matterfront-darwin-x64/Matterfront.app dist/Matterfront-win32-x64/Matterfront.exe dist/Matterfront-linux-x64/Matterfront
 
 dist/Matterfront-darwin-x64.zip: dist/Matterfront-darwin-x64
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
@@ -30,7 +34,10 @@ dist/Matterfront-darwin-x64.zip: dist/Matterfront-darwin-x64
 dist/Matterfront-win32-x64.zip: dist/Matterfront-win32-x64
 	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
 
-zip: dist/Matterfront-darwin-x64.zip dist/Matterfront-win32-x64.zip
+dist/Matterfront-linux-x64.zip: dist/Matterfront-linux-x64
+	cd $(dir $@); zip -r $(notdir $@) $(notdir $^)
+
+zip: dist/Matterfront-darwin-x64.zip dist/Matterfront-win32-x64.zip dist/Matterfront-linux-x64.zip
 
 install: dist/Matterfront-darwin-x64
 	rm -rf /Applications/Matterfront.app
