@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "description": "Mattermost frontend app powered by electron",
   "main": "./src/main.js",
-  "dependencies": {
-    "electron-packager": "^5.1.1"
-  },
   "devDependencies": {
     "electron-packager": "^5.1.1",
     "electron-prebuilt": "^0.34.2"
@@ -15,6 +12,9 @@
     "test": "mocha test",
     "start":"electron .",
     "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+  },
+  "bin":{
+    "matterfront":"./bin/cli.js"
   },
   "repository": {
     "type": "git",
