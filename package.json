@@ -6,9 +6,15 @@
   "dependencies": {
     "electron-packager": "^5.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "electron-packager": "^5.1.1",
+    "electron-prebuilt": "^0.34.2"
+  },
+  "electronVersion":"0.34.1",
   "scripts": {
-    "test": "mocha test"
+    "test": "mocha test",
+    "start":"electron .",
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
   },
   "repository": {
     "type": "git",
@@ -19,8 +25,8 @@
     "electron"
   ],
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
-  "contributors":[
-    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"    
+  "contributors": [
+    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"
   ],
   "license": "MIT",
   "bugs": {
