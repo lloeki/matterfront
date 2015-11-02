@@ -2,8 +2,9 @@ var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 var path = require('path');
 var fs = require('fs');
-
+var matterfront = require('matterfront');
 // Report crashes to our server.
+
 require('crash-reporter').start();
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -23,25 +24,8 @@ app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow({width: 1024, height: 600});
 
-  var config = {};
-  var configPaths = [
-    path.join('.', 'config.json'),
-    path.join(app.getPath('userData'), 'config.json'),
-    path.join(app.getAppPath(), 'config.json'),
-  ];
-  for (var i = 0; i < configPaths.length; i++) {
-    try {
-      config = JSON.parse(fs.readFileSync(configPaths[i]));
-      break;
-    } catch(e) {
-      if (e instanceof Error && e.code === 'ENOENT') {
-        // next
-      } else { throw e; }
-    }
-  }
 
-  var src = config['url'] || 'file://' + __dirname + '/nosrc.html';
-  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(src));
+  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(matterfront.src));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
