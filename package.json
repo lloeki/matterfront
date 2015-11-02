@@ -10,8 +10,8 @@
   "electronVersion":"0.34.1",
   "scripts": {
     "test": "mocha test",
-    "start":"electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+    "start":"electron ./",
+    "build": "electron-packager ./ $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
   },
   "bin":{
     "matterfront":"./bin/cli.js"

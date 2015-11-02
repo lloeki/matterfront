@@ -6,7 +6,7 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 
 ## Installation
 
-npm install matterfront
+    npm install matterfront
 
 ## Configuring
 
