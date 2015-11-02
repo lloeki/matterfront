@@ -18,7 +18,10 @@
     "Mattermost",
     "electron"
   ],
-  "author": "Brian Vanderbusch <brian.vanderbusch.qsho@statefarm.com> (https://s.f/qsho)",
+  "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
+  "contributors":[
+    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"    
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/H3Chief/matterfront/issues"
