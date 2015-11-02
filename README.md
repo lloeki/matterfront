@@ -4,21 +4,15 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 
 ![screenshot on OS X](https://cloud.githubusercontent.com/assets/75445/10773661/f6ba012e-7cfc-11e5-9873-e685ea80c860.png)
 
+## Installation
+
+`npm install matterfront'
+
 ## Configuring
 
-Create a `config.json` file in the relevant directory for your platform:
+Configuration can be passed via your CLI, by simply passing in the host and team name as cli params:
 
-- `~/Library/Application Support/Mattermost` on OS X
-- `%APPDATA%/Mattermost` on Windows
-- `~/.config/Mattermost` on Linux
-
-Make it look like this:
-
-```json
-{
-    "url": "https://mattermost.example.com/team-name"
-}
-```
+    matterfront -H http://mattermost.example.com -T team-name
 
 Including the team name is optional but makes things incredibly smoother if
 you have disabled account creation and log in exclusively with GitLab SSO.
@@ -27,17 +21,11 @@ In the future, this will be settable from the UI.
 
 ## Testing
 
-Place a `config.json` at the root of this project and execute `make run`.
+    npm test
 
 ## Building your own app
 
-This is useful to distribute the application preconfigured inside your company.
-
-- place `config.json` inside `src`
-- execute `make dist`
-- optionally, `make zip` will compress the files for you.
-
-In the future, doing this will lock the app into using only the configured URL.
+    npm build
 
 ## Name and affiliation
 
