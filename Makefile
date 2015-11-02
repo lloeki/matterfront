@@ -1,4 +1,4 @@
-SRC = src/main.js src/menu.js src/index.html src/package.json src/config.json
+SRC = src/main.js src/menu.js src/index.html src/load-src.js src/webview.js src/package.json src/config.json
 RES = resources/*
 
 all: dist
