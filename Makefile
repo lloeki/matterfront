@@ -16,15 +16,15 @@ run:
 
 dist/Matterfront-darwin-x64/Matterfront.app: $(SRC) $(RES)
 	mkdir -p dist
-	node_modules/.bin/electron-packager src Matterfront --platform=darwin --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-bundle-id=org.matterfront.app --app-version=0.1.0 --helper-bundle-id=org.matterfront.app.helper --asar --overwrite
+	node_modules/.bin/electron-packager src Matterfront --platform=darwin --arch=x64 --version=0.34.2 --out=dist --icon=resources/mattermost --app-bundle-id=org.matterfront.app --app-version=0.1.0 --helper-bundle-id=org.matterfront.app.helper --asar --overwrite
 
 dist/Matterfront-win32-x64/Matterfront.exe: $(SRC) $(RES)
 	mkdir -p dist
-	node_modules/.bin/electron-packager src Matterfront --platform=win32 --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
+	node_modules/.bin/electron-packager src Matterfront --platform=win32 --arch=x64 --version=0.34.2 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
 
 dist/Matterfront-linux-x64/Matterfront: $(SRC) $(RES)
 	mkdir -p dist
-	node_modules/.bin/electron-packager src Matterfront --platform=linux --arch=x64 --version=0.34.1 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
+	node_modules/.bin/electron-packager src Matterfront --platform=linux --arch=x64 --version=0.34.2 --out=dist --icon=resources/mattermost --app-version=0.1.0 --asar --overwrite
 
 dist: electrify dist/Matterfront-darwin-x64/Matterfront.app dist/Matterfront-win32-x64/Matterfront.exe dist/Matterfront-linux-x64/Matterfront
 

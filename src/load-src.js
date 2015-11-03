@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var badgeUpdate = function() {
+        if (process.platform !== 'darwin') { return; }
+
         var newBadge = false;
         if (unreadCount > 0) {
             newBadge = '●';
