@@ -1,3 +1,5 @@
+"use strict";
+
 var remote = require('remote');
 var app = remote.require('app');
 
@@ -8,28 +10,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     webview.setAttribute('src', src);
 
-    var badgeUpdateTimer = setInterval(function() {
-        webview.send('unread-count');
-        webview.send('mention-count');
-    }, 1000);
-
     var unreadCount = 0;
     var mentionCount = 0;
+    var bounceId = null;
+    var pendingUpdate = null;
 
     webview.addEventListener('ipc-message', function(event) {
         switch (event.channel) {
             case 'unread-count':
-                unreadCount = event.args[0];
+                unreadCount = parseInt(event.args[0], 10);
                 break;
             case 'mention-count':
-                mentionCount = event.args[0];
+                mentionCount = parseInt(event.args[0], 10);
                 break;
         }
 
-        badgeUpdate(unreadCount, mentionCount);
+        // if we send too many badgeUpdates, the app instantiated from the remote seems to use a
+        // LIFO queue so we end up overwriting the most recent one update with an older one
+        // so instead we'll wait 500ms and then if the timeout is not cancelled we'll update for real
+        if (pendingUpdate) {
+            clearTimeout(pendingUpdate);
+        }
+
+        pendingUpdate = setTimeout(badgeUpdate, 500);
     });
 
-    var badgeUpdate = function(unreadCount, mentionCount) {
+    webview.addEventListener('console-message', function(event) {
+        console.log('Mattermost: ', event.message);
+    });
+
+    var badgeUpdate = function() {
         var newBadge = false;
         if (unreadCount > 0) {
             newBadge = '●';
@@ -39,11 +49,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (mentionCount > 0) {
             newBadge = mentionCount;
-            app.dock.bounce('critical');
+            if (bounceId) app.dock.cancelBounce(bounceId);
+            bounceId = app.dock.bounce('critical');
+        } else if (mentionCount == 0) {
+            if (bounceId) app.dock.cancelBounce(bounceId);
         }
 
         if (newBadge !== false) {
             app.dock.setBadge(newBadge.toString());
         }
+
+        pendingUpdate = null;
     };
 });
