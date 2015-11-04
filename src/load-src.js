@@ -2,6 +2,8 @@
 
 var remote = require('remote');
 var app = remote.require('app');
+var NativeImage = remote.require('native-image');
+var mainWindow = remote.getCurrentWindow();
 
 document.addEventListener('DOMContentLoaded', function() {
     var qs = window.location.search;
@@ -40,8 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var badgeUpdate = function() {
-        if (process.platform !== 'darwin') { return; }
-
         var newBadge = false;
         if (unreadCount > 0) {
             newBadge = '●';
@@ -51,16 +51,66 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (mentionCount > 0) {
             newBadge = mentionCount;
-            if (bounceId) app.dock.cancelBounce(bounceId);
-            bounceId = app.dock.bounce('critical');
+            notifyOS(true);
         } else if (mentionCount == 0) {
-            if (bounceId) app.dock.cancelBounce(bounceId);
+            notifyOS(false);
         }
 
         if (newBadge !== false) {
-            app.dock.setBadge(newBadge.toString());
+            setBadge(newBadge);
         }
 
         pendingUpdate = null;
+    };
+
+    var notifyOS = function(flag) {
+        if (process.platform === 'darwin') {
+            if (bounceId) app.dock.cancelBounce(bounceId);
+            if (flag) {
+                bounceId = app.dock.bounce('critical');
+            }
+        } else if (process.platform === 'win32') {
+            mainWindow.flashFrame(flag)
+        }
+    };
+
+    var setBadge = function (text) {
+        text = text.toString();
+        if (process.platform === 'darwin') {
+            app.dock.setBadge(text);
+        } else if (process.platform === 'win32') {
+            if (text === '') {
+                mainWindow.setOverlayIcon(null, '');
+                return;
+            }
+
+            // Create badge
+            var canvas = document.createElement('canvas');
+            canvas.height = 140;
+            canvas.width = 140;
+            var ctx = canvas.getContext('2d');
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.ellipse(70, 70, 70, 70, 0, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.textAlign = 'center';
+            ctx.fillStyle = 'white';
+
+            if (text.length > 2) {
+                ctx.font = 'bold 65px "Segoe UI", sans-serif';
+                ctx.fillText('' + text, 70, 95);
+            } else if (text.length > 1) {
+                ctx.font = 'bold 85px "Segoe UI", sans-serif';
+                ctx.fillText('' + text, 70, 100);
+            } else {
+                ctx.font = 'bold 100px "Segoe UI", sans-serif';
+                ctx.fillText('' + text, 70, 105);
+            }
+
+            var badgeDataURL = canvas.toDataURL();
+            var img = NativeImage.createFromDataUrl(badgeDataURL);
+
+            mainWindow.setOverlayIcon(img, text);
+        }
     };
 });
