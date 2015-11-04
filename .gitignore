@@ -3,5 +3,5 @@
 /config.json
 /src/config.json
 .tag*
-*/npm-debug.log
+*npm-debug.log
 /.vagrant
