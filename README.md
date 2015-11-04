@@ -6,13 +6,26 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 
 ## Installation
 
-    npm install matterfront
+First, clone down this project, and then from within that directory in your favorite terminal run:
+
+  >  npm install 
+  // installs packages....
+  > npm link
+  // creates a local symlink
+
+You're now ready to start developing against your local mattermost installation. Make sure
+you have your `config.json` setup as noted in the steps below.
 
 ## Configuring
 
-Configuration can be passed via your CLI, by simply passing in the host and team name as cli params:
+Create a `config.json` file in the `/src` directory. It should look like this:
 
-    matterfront -H http://mattermost.example.com -T team-name
+
+```json
+{
+    "url": "https://mattermost.example.com/team-name"
+}
+```
 
 Including the team name is optional but makes things incredibly smoother if
 you have disabled account creation and log in exclusively with GitLab SSO.
@@ -21,7 +34,7 @@ In the future, this will be settable from the UI.
 
 ## Testing
 
-    npm test
+    npm start
 
 ## Building your own app
 
