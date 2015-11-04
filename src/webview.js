@@ -35,10 +35,24 @@ var checkActivity = function() {
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-    // hook into the DOM to detect changes and count the mentions and unread activity
-    $(document).bind("DOMSubtreeModified", function() {
-        checkActivity();
+    // observe the DOM for mutations, specifically the .ps-container
+    // which contains all the sidebar channels
+    var MutationObserver = window.MutationObserver;
+    var list = document.querySelector('.ps-container');
+
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            checkActivity();
+        });
     });
+
+    if (list) {
+        observer.observe(list, {
+            subtree: true,
+            attributes: true,
+            childList: true
+        });
+    }
 
     // initial one time notification
     checkActivity();
