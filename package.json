@@ -12,9 +12,6 @@
     "start":"electron ./",
     "build": "electron-packager ./src $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
   },
-  "bin":{
-    "matterfront":"./bin/cli.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/H3Chief/matterfront"
