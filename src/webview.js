@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var list = document.querySelector('.ps-container');
 
     var observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
+        if (mutations.length) {
             checkActivity();
-        });
+        }
     });
 
     if (list) {
