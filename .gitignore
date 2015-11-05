@@ -5,3 +5,4 @@
 .tag*
 *npm-debug.log
 /.vagrant
+.idea
