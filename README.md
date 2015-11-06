@@ -38,8 +38,24 @@ In the future, this will be settable from the UI.
 
 ## Building your own app
 
-    npm build
+First follow the install instrustions above. Then from within your project root,
+you can build for all platforms and distributions by running:
 
+    npm run build
+
+This will output the following into the `/dist` directory:
+
+```
+drwxr-xr-x  ... matterfront-darwin-x64
+drwxr-xr-x  ... matterfront-linux-ia32
+drwxr-xr-x  ... matterfront-linux-x64
+drwxr-xr-x  ... matterfront-win32-ia32
+drwxr-xr-x  ... matterfront-win32-x64
+```
+
+Each directory contains an executable for the platform listed. For more detailed 
+build options, check out how to modify your `build` from within `package.json` by
+using the options from [electron-packager](https://github.com/maxogden/electron-packager#usage) to modify your built artifacts.
 ## Name and affiliation
 
 Matterfront is a **Matter**most **front**end application. This application is in no way affiliated with nor endorsed by Mattermost. See [Mattermost branding guidelines](http://www.mattermost.org/brand-guidelines/).
