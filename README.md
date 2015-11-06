@@ -38,16 +38,16 @@ In the future, this will be settable from the UI.
 This project contains a [Vagrant](https://vagrantup.com) environment, consisting of
 a locally hostable mattermost instance you can use for testing. Alternatively, you can use your own production mattermost server.
 
-### Use your production Mattermost Instance
+### Use your production Mattermost instance
 
-1. after following the Configuration steps above, run `npm start` from within your matterfront directory 
+After following the configuration steps above, run `npm start` from within your matterfront directory 
 
-### Vagrant Method
+### Vagrant method
 
 1. Set up your `config.json` using `"url":"http://192.168.33.33"` 
 2. run `vagrant up` from within your local
 copy of this repo
-2. run `npm start`
+3. run `npm start`
 
 ## Building your own app
 
@@ -56,19 +56,21 @@ you can build for all platforms and distributions by running:
 
     npm run build
 
-This will output the following into the `/dist` directory:
+This will output the following distributions into the `/dist` directory:
 
 ```
-drwxr-xr-x  ... matterfront-darwin-x64
-drwxr-xr-x  ... matterfront-linux-ia32
-drwxr-xr-x  ... matterfront-linux-x64
-drwxr-xr-x  ... matterfront-win32-ia32
-drwxr-xr-x  ... matterfront-win32-x64
+dist/
+ |- matterfront-darwin-x64/
+ |- matterfront-linux-ia32/
+ |- matterfront-linux-x64/
+ |- matterfront-win32-ia32/
+ |- matterfront-win32-x64/
 ```
 
 Each directory contains an executable for the platform listed. For more detailed 
 build options, check out how to modify your `build` from within `package.json` by
 using the options from [electron-packager](https://github.com/maxogden/electron-packager#usage) to modify your built artifacts.
+
 ## Name and affiliation
 
 Matterfront is a **Matter**most **front**end application. This application is in no way affiliated with nor endorsed by Mattermost. See [Mattermost branding guidelines](http://www.mattermost.org/brand-guidelines/).
