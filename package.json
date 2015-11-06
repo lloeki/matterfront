@@ -10,7 +10,7 @@
   "electronVersion":"0.34.1",
   "scripts": {
     "start":"electron ./",
-    "build": "electron-packager ./src $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
+    "build": "electron-packager ./src matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion"
   },
   "repository": {
     "type": "git",
