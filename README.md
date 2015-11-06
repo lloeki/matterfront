@@ -8,11 +8,12 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 
 First, clone down this project, and then from within that directory in your favorite terminal run:
 
-  >  npm install 
-  // installs packages....
-  > npm link
-  // creates a local symlink
-
+```
+>  npm install 
+// installs packages....
+> npm link
+// creates a local symlink
+```
 You're now ready to start developing against your local mattermost installation. Make sure
 you have your `config.json` setup as noted in the steps below.
 
