@@ -35,7 +35,19 @@ In the future, this will be settable from the UI.
 
 ## Testing
 
-    npm start
+This project contains a [Vagrant](https://vagrantup.com) environment, consisting of
+a locally hostable mattermost instance you can use for testing. Alternatively, you can use your own production mattermost server.
+
+### Use your production Mattermost Instance
+
+1. after following the Configuration steps above, run `npm start` from within your matterfront directory 
+
+### Vagrant Method
+
+1. Set up your `config.json` using `"url":"http://192.168.33.33"` 
+2. run `vagrant up` from within your local
+copy of this repo
+2. run `npm start`
 
 ## Building your own app
 
