@@ -6,64 +6,37 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  # The most common configuration options are documented and commented below.
-  # For a complete reference, please see the online documentation at
-  # https://docs.vagrantup.com.
 
-  # Every Vagrant development environment requires a box. You can search for
-  # boxes at https://atlas.hashicorp.com/search.
+  # use basic ubuntu/trusty64 as base box
   config.vm.box = "ubuntu/trusty64"
-  # Disable automatic box update checking. If you disable this, then
-  # boxes will only be checked for updates when the user runs
-  # `vagrant box outdated`. This is not recommended.
-  # config.vm.box_check_update = false
+  config.vm.hostname = "matterfront"
 
-  # Create a forwarded port mapping which allows access to a specific port
-  # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:8080" will access port 80 on the guest machine.
-  config.vm.network "forwarded_port", guest: 80, host: 80
-
-  # Create a private network, which allows host-only access to the machine
-  # using a specific IP.
+  # configure network for private mattermost instance
+  # to be accessed from the host machine by hitting http://192.168.33.33
+  # or on any networked machine by accessing
+  # your host machine's IP on port 8065 (http://localhost:8065)
+  config.vm.network "forwarded_port", guest: 80, host: 8065
   config.vm.network "private_network", ip: "192.168.33.33"
-  # Create a public network, which generally matched to bridged network.
-  # Bridged networks make the machine appear as another physical device on
-  # your network.
-  # config.vm.network "public_network"
 
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
-
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  # config.push.define "atlas" do |push|
-  #   push.app = "YOUR_ATLAS_USERNAME/YOUR_APPLICATION_NAME"
-  # end
+  # set up virtualbox configurations for this vm
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 2
 	vb.name = "mattermost-dev"
 	vb.memory = "2048"
   end
-  # Enable provisioning with a shell script. Additional provisioners such as
-  # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
-  # documentation for more information about their specific syntax and use.
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y apache2
   SHELL
+
+  # configure vm to start a docker mattermost image
+  # accessible on private ip from the host
   config.vm.provision "docker" do |d|
     d.images = ["mattermost/platform:dev"]
-	d.run "mattermost/platform:dev",
+	d.run "mattermost-dev",
+	  image: "mattermost/platform:dev",
 	  daemonize: true,
-	  auto_assign_name: true,
 	  args: "--publish 80:80"
   end
 end
