@@ -12,6 +12,9 @@
     "build": "electron-packager ./src matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite"
   },
   "electronVersion": "0.34.3",
+  "bin": {
+    "matterfront": "./bin/matterfront"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lloeki/matterfront"
@@ -28,6 +31,8 @@
     "electron-prebuilt": "^0.34.2"
   },
   "dependencies": {
-    "electron-packager": "^5.1.1"
+    "commander": "^2.9.0",
+    "electron-packager": "^5.1.1",
+    "nconf": "^0.8.2"
   }
 }
