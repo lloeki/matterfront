@@ -1,6 +1,6 @@
 {
   "name": "matterfront",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Mattermost frontend app powered by electron",
   "homepage": "https://github.com/lloeki/matterfront",
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
