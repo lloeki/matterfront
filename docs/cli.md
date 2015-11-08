@@ -2,8 +2,7 @@
 
 Matterfront uses git-style sub-commands. For example:
 
-    matterfront run [opts]
-    matterfront build [opts]
+    matterfront <command> [options]
 
 Each primary action is a non-parameterized command.
 
