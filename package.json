@@ -1,0 +1,33 @@
+{
+  "name": "matterfront",
+  "version": "0.1.0",
+  "description": "Mattermost frontend app powered by electron",
+  "homepage": "https://github.com/lloeki/matterfront",
+  "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
+  "contributors": [
+    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"
+  ],
+  "scripts": {
+    "start": "electron ./src",
+    "build": "electron-packager ./src matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite"
+  },
+  "electronVersion": "0.34.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lloeki/matterfront"
+  },
+  "keywords": [
+    "Mattermost",
+    "electron"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lloeki/matterfront/issues"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.34.2"
+  },
+  "dependencies": {
+    "electron-packager": "^5.1.1"
+  }
+}

@@ -3,4 +3,7 @@
 /config.json
 /src/config.json
 .tag*
+*npm-debug.log
+/.vagrant
 .idea
+/tmp

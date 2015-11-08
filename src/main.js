@@ -2,8 +2,8 @@ var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 var path = require('path');
 var fs = require('fs');
-
 // Report crashes to our server.
+
 require('crash-reporter').start();
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -22,7 +22,6 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow({width: 1024, height: 600});
-
   var config = {};
   var configPaths = [
     path.join('.', 'config.json'),
@@ -41,6 +40,7 @@ app.on('ready', function() {
   }
 
   var src = config['url'] || 'file://' + __dirname + '/nosrc.html';
+
   mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(src));
 
   app.on('activate', function(e, hasVisibleWindows) {

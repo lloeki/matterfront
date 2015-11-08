@@ -4,15 +4,23 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 
 ![screenshot on OS X](https://cloud.githubusercontent.com/assets/75445/10773661/f6ba012e-7cfc-11e5-9873-e685ea80c860.png)
 
+## Installation
+
+First, clone down this project, and then from within that directory in your favorite terminal run:
+
+```
+>  npm install 
+// installs packages....
+> npm link
+// creates a local symlink
+```
+You're now ready to start developing against your local mattermost installation. Make sure
+you have your `config.json` setup as noted in the steps below.
+
 ## Configuring
 
-Create a `config.json` file in the relevant directory for your platform:
+Create a `config.json` file in the `/src` directory. It should look like this:
 
-- `~/Library/Application Support/Mattermost` on OS X
-- `%APPDATA%/Mattermost` on Windows
-- `~/.config/Mattermost` on Linux
-
-Make it look like this:
 
 ```json
 {
@@ -27,17 +35,41 @@ In the future, this will be settable from the UI.
 
 ## Testing
 
-Place a `config.json` at the root of this project and execute `make run`.
+This project contains a [Vagrant](https://vagrantup.com) environment, consisting of
+a locally hostable mattermost instance you can use for testing. Alternatively, you can use your own production mattermost server.
+
+### Use your production Mattermost instance
+
+After following the configuration steps above, run `npm start` from within your matterfront directory 
+
+### Vagrant method
+
+1. Set up your `config.json` using `"url":"http://192.168.33.33"` 
+2. run `vagrant up` from within your local
+copy of this repo
+3. run `npm start`
 
 ## Building your own app
 
-This is useful to distribute the application preconfigured inside your company.
+First follow the install instrustions above. Then from within your project root,
+you can build for all platforms and distributions by running:
 
-- place `config.json` inside `src`
-- execute `make dist`
-- optionally, `make zip` will compress the files for you.
+    npm run build
 
-In the future, doing this will lock the app into using only the configured URL.
+This will output the following distributions into the `/dist` directory:
+
+```
+dist/
+ |- matterfront-darwin-x64/
+ |- matterfront-linux-ia32/
+ |- matterfront-linux-x64/
+ |- matterfront-win32-ia32/
+ |- matterfront-win32-x64/
+```
+
+Each directory contains an executable for the platform listed. For more detailed 
+build options, check out how to modify your `build` from within `package.json` by
+using the options from [electron-packager](https://github.com/maxogden/electron-packager#usage) to modify your built artifacts.
 
 ## Name and affiliation
 
