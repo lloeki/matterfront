@@ -1,14 +1,4 @@
 #! /usr/bin/env node
 
-var program = require("commander");
+var parseArgs = require("minimist");
 var pkg = require("../package.json");
-
-program
-  .version(pkg.version)
-  .usage('<command> [options]')
-  .command("build [opts]", "build mattermost")
-  .command("config [opts]", "set configuration values")
-  .command("deploy [opts]", "push current build artifacts to a host")
-  .command("info", "displays build information and available updates")
-  .command("run [opts]", "launch matterfront", {isDefault: true})
-  .parse(process.argv);

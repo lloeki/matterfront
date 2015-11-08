@@ -31,8 +31,8 @@
     "electron-prebuilt": "^0.34.2"
   },
   "dependencies": {
-    "commander": "^2.9.0",
     "electron-packager": "^5.1.1",
+    "minimist": "^1.2.0",
     "nconf": "^0.8.2"
   }
 }
