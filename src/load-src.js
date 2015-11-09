@@ -41,6 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Mattermost: ', event.message);
     });
 
+    // Keep the focus on the webview.
+    // Without this, the webview loses focus when switching to another app and back.
+    window.addEventListener('focus', function(e) {
+      webview.focus();
+    });
+
     var badgeUpdate = function() {
         var newBadge = false;
         if (unreadCount > 0) {
