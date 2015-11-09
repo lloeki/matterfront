@@ -1,4 +1,11 @@
 #! /usr/bin/env node
 
-var parseArgs = require("minimist")(process.argv.slice(2));
+var commander = require("commander");
 var pkg = require("../package.json");
+
+commander
+  .version(pkg.version);
+
+
+
+commander.parse(process.argv);
