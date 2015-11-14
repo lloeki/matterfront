@@ -12,6 +12,10 @@ var statePath = path.join(app.getDataPath(), "state.json");
 try {
   state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
 } catch(e) {
+  // Ignore non-existing file, but log any other error.
+  if (!(e instanceof Error) || e.code !== 'ENOENT') {
+    console.error('Error loading ' + statePath + ': ', e);
+  }
 }
 // Defaults.
 if (state.winOptions === undefined) {
