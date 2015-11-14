@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "electron-packager": "^5.1.1",
+    "harmonize": "^1.4.4",
     "minimist": "^1.2.0",
     "nconf": "^0.8.2"
   }

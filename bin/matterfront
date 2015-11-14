@@ -2,10 +2,17 @@
 
 var commander = require("commander");
 var pkg = require("../package.json");
+var subcommands = require("../lib/commands");
+
 
 commander
   .version(pkg.version);
 
-
+/**
+* For each sub-command run commander.command(commandname);
+*/
+subcommands.commands.forEach(function(command){
+	commander.command(command);
+});
 
 commander.parse(process.argv);
