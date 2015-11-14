@@ -16,3 +16,4 @@ subcommands.commands.forEach(function(command){
 });
 
 commander.parse(process.argv);
+
