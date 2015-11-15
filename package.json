@@ -12,7 +12,8 @@
     "build": "matterfront build"
   },
   "bin": {
-    "matterfront": "./bin/matterfront"
+    "matterfront": "./bin/matterfront",
+    "matterfront-docgen":"./bin/docgen"
   },
   "electronVersion": "0.34.3",
   "repository": {
@@ -28,6 +29,7 @@
     "url": "https://github.com/lloeki/matterfront/issues"
   },
   "devDependencies": {
+    "dox": "^0.8.0",
     "electron-prebuilt": "^0.34.3"
   },
   "dependencies": {

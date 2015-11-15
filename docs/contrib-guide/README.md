@@ -17,6 +17,6 @@ as a markdown file, creating a new guide file for each file in a heirarchical
 structure matching the structure underneath `/lib`.
 
 If you wish to contribute, please follow this pattern, and make sure to run
-`npm run docs` prior to submitting a merge request.
+`matterfront-docgen` prior to submitting a merge request.
 
 [jsdoc]: http://usejsdoc.org/

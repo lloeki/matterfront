@@ -1,0 +1,17 @@
+#! /usr/bin/env node
+
+var dox = require("dox");
+var fs = require("fs");
+var args = require("yargs");
+
+args.
+  .usage('npm run docg [options]')
+  .alias('b','build')
+  .describe('b','builds docs for given files')
+  .array('build')
+  .example('build','npm run docgen --build lib/commands/info.js lib/utils builds docs for lib/commands/info.js and all files under lib/utils')
+  .argv;
+
+args;
+
+console.log(argv);
