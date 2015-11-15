@@ -28,7 +28,7 @@
     "url": "https://github.com/lloeki/matterfront/issues"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.34.2"
+    "electron-prebuilt": "^0.34.3"
   },
   "dependencies": {
     "electron-packager": "^5.1.1",
