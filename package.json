@@ -8,8 +8,8 @@
     "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"
   ],
   "scripts": {
-    "start": "electron ./src",
-    "build": "electron-packager ./src matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon resources/mattermost"
+    "start": "matterfront",
+    "build": "matterfront build"
   },
   "bin": {
     "matterfront": "./bin/matterfront"
@@ -31,8 +31,8 @@
     "electron-prebuilt": "^0.34.2"
   },
   "dependencies": {
-    "commander": "^2.9.0",
     "electron-packager": "^5.1.1",
-    "nconf": "^0.8.2"
+    "nconf": "^0.8.2",
+    "yargs": "^3.30.0"
   }
 }

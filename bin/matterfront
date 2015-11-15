@@ -1,19 +1,19 @@
 #! /usr/bin/env node
 
-var commander = require("commander");
+var yargs = require("yargs");
 var pkg = require("../package.json");
 var subcommands = require("../lib/commands");
 
+yargs
+  // requires at least 1 non-has argument
+  .demand(1)
+  .usage('Usage: matterfront <command> [options]')
+  .help('h')
+  .alias('h','help')
+  .command('info','display info and update availability')
+  .command('build','build matterfront executable')
+  .command('deploy','publish built artifacts to given server')
+.argv;
 
-commander
-  .version(pkg.version);
 
-/**
-* For each sub-command run commander.command(commandname);
-*/
-subcommands.commands.forEach(function(command){
-	commander.command(command);
-});
-
-commander.parse(process.argv);
 
