@@ -1,19 +1,8 @@
 #! /usr/bin/env node
 
-var yargs = require("yargs");
 var pkg = require("../package.json");
-var subcommands = require("../lib/commands");
+var cli = require("../lib/cli");
+var config = require("../lib/config");
 
-yargs
-  // requires at least 1 non-has argument
-  .demand(1)
-  .usage('Usage: matterfront <command> [options]')
-  .help('h')
-  .alias('h','help')
-  .command('info','display info and update availability')
-  .command('build','build matterfront executable')
-  .command('deploy','publish built artifacts to given server')
-.argv;
-
-
-
+// builds the api and passes command line args to it
+cli().argv;
