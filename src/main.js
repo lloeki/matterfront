@@ -13,13 +13,16 @@ try {
   state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
 } catch(e) {
   // Ignore non-existing file, but log any other error.
-  if (!(e instanceof Error) || e.code !== 'ENOENT') {
+  if (e instanceof Error && e.code === 'ENOENT') {
+    console.log(statePath + ' not found. Defaults for the window state will be used.');
+  } else {
     console.error('Error loading ' + statePath + ': ', e);
   }
 }
 // Defaults.
 if (state.winOptions === undefined) {
   state.winOptions = {width: 1024, height: 600};
+  console.log('Using default window options: ', state.winOptions);
 }
 
 // Keep a global reference of the window object, if you don't, the window will
