@@ -4,7 +4,7 @@ var remote = require('remote');
 var app = remote.require('app');
 var NativeImage = remote.require('native-image');
 var mainWindow = remote.getCurrentWindow();
-var version = remote.require('../package.json').version;
+var version = remote.require('./package.json').version;
 
 document.addEventListener('DOMContentLoaded', function () {
   var qs = window.location.search;
