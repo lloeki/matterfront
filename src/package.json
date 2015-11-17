@@ -1,9 +1,9 @@
 {
-  "name": "Matterfront",
-  "version": "0.1.0",
+  "name": "matterfront",
+  "version": "1.0.1",
   "main": "main.js",
   "devDependencies": {
-    "electron-packager": "^5.1.0",
-    "electron-prebuilt": "^0.34.1"
+    "electron-packager": "^5.1.1",
+    "electron-prebuilt": "^0.35.0"
   }
 }
