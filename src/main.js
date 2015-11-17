@@ -41,7 +41,7 @@ app.on('ready', function() {
 
   var src = config['url'] || 'file://' + __dirname + '/nosrc.html';
 
-  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(src));
+  mainWindow.loadURL('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(src));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
