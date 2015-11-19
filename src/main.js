@@ -6,6 +6,25 @@ var fs = require('fs');
 
 require('crash-reporter').start();
 
+// Load persisted state.
+var state = {};
+var statePath = path.join(app.getDataPath(), "state.json");
+try {
+  state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+} catch(e) {
+  // Ignore non-existing file, but log any other error.
+  if (e instanceof Error && e.code === 'ENOENT') {
+    console.log(statePath + ' not found. Defaults for the window state will be used.');
+  } else {
+    console.error('Error loading ' + statePath + ': ', e);
+  }
+}
+// Defaults.
+if (state.winOptions === undefined) {
+  state.winOptions = {width: 1024, height: 600};
+  console.log('Using default window options: ', state.winOptions);
+}
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
@@ -21,7 +40,7 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   var quitting = false;
-  mainWindow = new BrowserWindow({width: 1024, height: 600});
+  mainWindow = new BrowserWindow(state.winOptions);
   var config = {};
   var configPaths = [
     path.join('.', 'config.json'),
@@ -60,6 +79,17 @@ app.on('ready', function() {
   });
 
   mainWindow.on('close', function(e) {
+    // Persist state.
+    state.winOptions.fullscreen = mainWindow.isFullScreen();
+    if (!mainWindow.isFullScreen()) {
+      var bounds = mainWindow.getBounds();
+      state.winOptions.x = bounds.x;
+      state.winOptions.y = bounds.y;
+      state.winOptions.width = bounds.width;
+      state.winOptions.height = bounds.height;
+    }
+    fs.writeFileSync(statePath, JSON.stringify(state));
+
     if (process.platform != 'darwin') { return; }
     if (quitting) { return; }
 
