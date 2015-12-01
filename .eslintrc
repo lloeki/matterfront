@@ -6,6 +6,9 @@ ecmaFeatures:
   blockBindings: true
 
 rules:
+  indent:
+    - 2
+    - 2
   new-cap: 0
   no-unused-vars:
     - 2
