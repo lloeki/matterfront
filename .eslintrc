@@ -1,0 +1,16 @@
+env:
+  node: true
+  browser: true
+
+ecmaFeatures:
+  blockBindings: true
+
+rules:
+  new-cap: 0
+  no-unused-vars:
+    - 2
+    -
+      args: "none"
+  strict:
+    - 2
+    - "never"
