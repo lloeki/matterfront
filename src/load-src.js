@@ -1,5 +1,3 @@
-"use strict";
-
 var remote = require('remote');
 var app = remote.require('app');
 var NativeImage = remote.require('native-image');

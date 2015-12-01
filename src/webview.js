@@ -1,5 +1,3 @@
-"use strict";
-
 var ipc = require('ipc');
 
 var mentionCount = 0;
