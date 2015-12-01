@@ -27,9 +27,15 @@
   },
   "devDependencies": {
     "electron-prebuilt": "^0.34.2",
-    "eslint": "~1.10.2"
+    "eslint": "~1.10.2",
+    "ghooks": "~1.0.1"
   },
   "dependencies": {
     "electron-packager": "^5.1.1"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint"
+    }
   }
 }
