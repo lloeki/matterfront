@@ -3,81 +3,14 @@
   <head>
     <meta charset="UTF-8">
     <title>Matterfront</title>
-  <style>
-    webview, #overlay {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-
-    #overlay {
-        background-color: #000;
-        opacity: 0.5;
-        transition: opacity 250ms, z-index 250ms;
-        z-index: 100;
-    }
-
-    #overlay::before {
-        content: "\26A1";
-        font-size: 48px;
-        color: #fff;
-        text-align: center;
-        display: block;
-        position: absolute;
-        top: 40%;
-        left: 0;
-        right: 0;
-    }
-  </style>
+    <link href="index.css" rel="stylesheet" type="text/css" />
   <script>
     // force load electron
     process.versions['electron']
   </script>
   <script src='load-src.js'></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var webview = document.getElementById("mattermost-remote");
-      webview.addEventListener('new-window', function(e) {
-         require('shell').openExternal(e.url);
-       });
-    });
-  </script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var overlay = document.querySelector('#overlay');
-        var webview = document.getElementById("mattermost-remote");
-
-        webview.addEventListener('dom-ready', function() {
-            if (navigator.onLine) {
-                overlay.style['opacity'] = 0;
-                overlay.style['z-index'] = -1;
-            }
-        });
-        var handleOnline = function(first) {
-            if (navigator.onLine) {
-                // TODO: add spinner/connecting icon
-                if (first) {
-                    console.log('connecting');
-                } else {
-                    console.log('reconnecting');
-                    setTimeout(function() { webview.reload(); }, 500);
-                }
-            } else {
-                // TODO: add offline/unplugged icon
-                console.log('disconnected');
-                overlay.style['opacity'] = 0.5;
-                overlay.style['z-index'] = 100;
-            }
-        };
-
-        window.addEventListener('online', function() { handleOnline(false) } );
-        window.addEventListener('offline', function() { handleOnline(false) } );
-
-        handleOnline(true);
-    });
-  </script>
+  <script src='window-opener.js'></script>
+  <script src='overlay.js'></script>
   </head>
   <body>
     <webview id='mattermost-remote' src partition='persist:mattermost' preload="webview.js"></webview>
