@@ -70,7 +70,7 @@ app.on('ready', function() {
   });
 
   mainWindow.webContents.on('will-navigate', function (e) {
-      e.preventDefault();
+    e.preventDefault();
   });
 
   mainWindow.on('closed', function() {
