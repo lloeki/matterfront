@@ -1,0 +1,12 @@
+{
+  "teams": [{
+    "name": "team1",
+    "url": "http://some.server.com/team1"
+  }, {
+    "name": "team2",
+    "url": "http://some.server.com/team2"
+  }],
+  "window": {
+    "width": 800
+  }
+}

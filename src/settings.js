@@ -1,17 +1,18 @@
-var ini = require('ini');
+var fs = require('fs');
+var mkdirp = require('mkdirp').sync;
 var nconf = require('nconf')
 var path = require('path-extra');
 
 var settings = {};
 
-var getConfigPath = function(homedir){
+var getSettingsDir = function(homedir){
   homedir = homedir || path.homedir();
-  return path.join(homedir, '.matterfront/config.ini');
+  return path.join(homedir, '.matterfront');
 };
 
 var getStatePath = function(homedir){
-  homedir = homedir || path.homedir();
-  return path.join(homedir, '.matterfront/state.ini');
+  var settingsDir = getSettingsDir(homedir);
+  return path.join(settingsDir, 'state.json');
 };
 
 var defaults = {
@@ -22,37 +23,19 @@ var defaults = {
 };
 
 settings.load = function(homedir){
-  var configPath = getConfigPath(homedir);
   var statePath = getStatePath(homedir);
 
   nconf.argv();
-  nconf.add('config', {
-    type: 'file',
-    file: configPath,
-    format: nconf.formats.ini
-  });
-  nconf.add('state', {
-    type: 'file',
-    file: statePath,
-    format: nconf.formats.ini
-  });
+  nconf.file(statePath);
   nconf.defaults(defaults);
-  settings._current = nconf.get();
-  return settings._current;
 };
 
-settings.current = function(homedir){
-  if (settings._current){
-    return settings._current;
-  } else {
-    return settings.load(homedir);
-  }
+settings.get = function(key){
+  return nconf.get(key);
 };
 
 settings.set = function(key, value){
   nconf.set(key, value);
-  settings._current = nconf.get();
-  return settings._current;
 };
 
 settings.append = function(key, value){
@@ -63,9 +46,16 @@ settings.append = function(key, value){
 };
 
 settings.saveState = function(homedir){
+  var settingsDir = getSettingsDir(homedir);
+  mkdirp(settingsDir);
+
   var statePath = getStatePath(homedir);
-  var content = ini.stringify(nconf.stores.state);
-  fs.writeFileSync(content, statePath);
+  var state = {
+    teams: nconf.get("teams"),
+    window: nconf.get("window")
+  };
+  var content = JSON.stringify(state);
+  fs.writeFileSync(statePath, content);
 };
 
 module.exports = settings;
