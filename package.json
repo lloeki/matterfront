@@ -7,10 +7,11 @@
   "contributors": [
     "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"
   ],
+  "main": "src/main.js",
   "scripts": {
     "build": "electron-packager ./src Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "lint": "eslint . --ignore-path .gitignore",
-    "start": "electron ./src",
+    "start": "electron .",
     "test": "mocha",
     "watch": "mocha watch"
   },
