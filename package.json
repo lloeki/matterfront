@@ -10,7 +10,9 @@
   "scripts": {
     "build": "electron-packager ./src Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "lint": "eslint . --ignore-path .gitignore",
-    "start": "electron ./src"
+    "start": "electron ./src",
+    "test": "mocha",
+    "watch": "mocha watch"
   },
   "electronVersion": "0.34.2",
   "repository": {
@@ -26,9 +28,11 @@
     "url": "https://github.com/lloeki/matterfront/issues"
   },
   "devDependencies": {
+    "chai": "~3.4.1",
     "electron-prebuilt": "^0.34.2",
     "eslint": "~1.10.2",
-    "ghooks": "~1.0.1"
+    "ghooks": "~1.0.1",
+    "mocha": "~2.3.4"
   },
   "dependencies": {
     "electron-packager": "^5.1.1"
