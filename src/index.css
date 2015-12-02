@@ -1,0 +1,26 @@
+webview, #overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#overlay {
+    background-color: #000;
+    opacity: 0.5;
+    transition: opacity 250ms, z-index 250ms;
+    z-index: 100;
+}
+
+#overlay::before {
+    content: "\26A1";
+    font-size: 48px;
+    color: #fff;
+    text-align: center;
+    display: block;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+}
