@@ -1,13 +1,16 @@
 <h1>No configuration found!<h1>
 
 <div>
-Create a <code>config.json</code> file at the root of your project
+Create a <code>~/.mattermost/state.json</code> file in your home directory,
 </div>
 <div>
 And make it look like this:
 <pre></code>
 {
-    "url": "https://mattermost.example.com/team-name"
+  "teams": [{
+    "name": "some-team",
+    "url": "http://some.server.com/some-team"
+  }]
 }
 </code>
 </pre>
