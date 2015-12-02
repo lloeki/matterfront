@@ -1,6 +1,5 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
-var path = require('path');
 var settings = require('./settings.js');
 
 require('crash-reporter').start();
@@ -10,6 +9,8 @@ settings.load();
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
+
+app.commandLine.appendSwitch('no-proxy-server');
 
 app.on('window-all-closed', function() {
   // On OS X it is common for applications and their menu bar
