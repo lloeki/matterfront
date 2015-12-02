@@ -1,8 +1,7 @@
-var app = require('app');  // Module to control application life.
-var BrowserWindow = require('browser-window');  // Module to create native browser window.
-var path = require('path');
+var app = require('app');
+var BrowserWindow = require('browser-window');
 var fs = require('fs');
-// Report crashes to our server.
+var path = require('path');
 
 require('crash-reporter').start();
 
@@ -29,7 +28,6 @@ if (state.winOptions === undefined) {
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-// Quit when all windows are closed.
 app.on('window-all-closed', function() {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
