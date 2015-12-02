@@ -10,8 +10,6 @@ settings.load();
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
 
-app.commandLine.appendSwitch('no-proxy-server');
-
 app.on('window-all-closed', function() {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
