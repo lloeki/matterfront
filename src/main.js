@@ -1,28 +1,11 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
-var fs = require('fs');
 var path = require('path');
+var settings = require('./settings.js');
 
 require('crash-reporter').start();
 
-// Load persisted state.
-var state = {};
-var statePath = path.join(app.getDataPath(), "state.json");
-try {
-  state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
-} catch(e) {
-  // Ignore non-existing file, but log any other error.
-  if (e instanceof Error && e.code === 'ENOENT') {
-    console.log(statePath + ' not found. Defaults for the window state will be used.');
-  } else {
-    console.error('Error loading ' + statePath + ': ', e);
-  }
-}
-// Defaults.
-if (state.winOptions === undefined) {
-  state.winOptions = {width: 1024, height: 600};
-  console.log('Using default window options: ', state.winOptions);
-}
+settings.load();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -36,29 +19,21 @@ app.on('window-all-closed', function() {
   }
 });
 
+var getFirstTeam = function(){
+  var teams = settings.get('teams');
+  if (Array.isArray(teams) && teams.length > 0){
+    return teams[0].url;
+  } else {
+    return 'file://' + __dirname + '/nosrc.html';
+  }
+};
+
 app.on('ready', function() {
   var quitting = false;
-  mainWindow = new BrowserWindow(state.winOptions);
-  var config = {};
-  var configPaths = [
-    path.join('.', 'config.json'),
-    path.join(app.getPath('userData'), 'config.json'),
-    path.join(app.getAppPath(), 'config.json'),
-  ];
-  for (var i = 0; i < configPaths.length; i++) {
-    try {
-      config = JSON.parse(fs.readFileSync(configPaths[i]));
-      break;
-    } catch(e) {
-      if (e instanceof Error && e.code === 'ENOENT') {
-        // next
-      } else { throw e; }
-    }
-  }
+  mainWindow = new BrowserWindow(settings.get('window'));
 
-  var src = config['url'] || 'file://' + __dirname + '/nosrc.html';
-
-  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(src));
+  var team = getFirstTeam();
+  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(team));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
@@ -77,16 +52,15 @@ app.on('ready', function() {
   });
 
   mainWindow.on('close', function(e) {
-    // Persist state.
-    state.winOptions.fullscreen = mainWindow.isFullScreen();
+    settings.set('window:fullscreen', mainWindow.isFullScreen());
     if (!mainWindow.isFullScreen()) {
       var bounds = mainWindow.getBounds();
-      state.winOptions.x = bounds.x;
-      state.winOptions.y = bounds.y;
-      state.winOptions.width = bounds.width;
-      state.winOptions.height = bounds.height;
+      settings.set('window:x', bounds.x);
+      settings.set('window:y', bounds.y);
+      settings.set('window:width', bounds.width);
+      settings.set('window:height', bounds.height);
     }
-    fs.writeFileSync(statePath, JSON.stringify(state));
+    settings.saveState();
 
     if (process.platform != 'darwin') { return; }
     if (quitting) { return; }
