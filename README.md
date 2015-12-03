@@ -51,7 +51,7 @@ copy of this repo
 
 ## Building your own app
 
-First follow the install instrustions above. Then from within your project root,
+First follow the install instructions above. Then from within your project root,
 you can build for all platforms and distributions by running:
 
     npm run build
