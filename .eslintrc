@@ -1,0 +1,19 @@
+env:
+  node: true
+  browser: true
+
+ecmaFeatures:
+  blockBindings: true
+
+rules:
+  indent:
+    - 2
+    - 2
+  new-cap: 0
+  no-unused-vars:
+    - 2
+    -
+      args: "none"
+  strict:
+    - 2
+    - "never"

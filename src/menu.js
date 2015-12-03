@@ -1,6 +1,5 @@
-var remote = require('remote');
-var app = remote.require('app');
-var Menu = remote.require('menu');
+var app = require('app');
+var Menu = require('menu');
 
 var template = [
   {
