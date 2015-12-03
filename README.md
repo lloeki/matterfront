@@ -9,7 +9,7 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 First, clone down this project, and then from within that directory in your favorite terminal run:
 
 ```
->  npm install 
+>  npm install
 // installs packages....
 > npm link
 // creates a local symlink
@@ -40,18 +40,18 @@ a locally hostable mattermost instance you can use for testing. Alternatively, y
 
 ### Use your production Mattermost instance
 
-After following the configuration steps above, run `npm start` from within your matterfront directory 
+After following the configuration steps above, run `npm start` from within your matterfront directory
 
 ### Vagrant method
 
-1. Set up your `config.json` using `"url":"http://192.168.33.33"` 
+1. Set up your `config.json` using `"url":"http://192.168.33.33"`
 2. run `vagrant up` from within your local
 copy of this repo
 3. run `npm start`
 
 ## Building your own app
 
-First follow the install instrustions above. Then from within your project root,
+First follow the install instructions above. Then from within your project root,
 you can build for all platforms and distributions by running:
 
     npm run build
@@ -67,7 +67,7 @@ dist/
  |- matterfront-win32-x64/
 ```
 
-Each directory contains an executable for the platform listed. For more detailed 
+Each directory contains an executable for the platform listed. For more detailed
 build options, check out how to modify your `build` from within `package.json` by
 using the options from [electron-packager](https://github.com/maxogden/electron-packager#usage) to modify your built artifacts.
 
