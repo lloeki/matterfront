@@ -1,4 +1,4 @@
-![https://travis-ci.org/StateFarmIns/matterfront](https://travis-ci.org/StateFarmIns/matterfront.svg)
+[]![Build Status](https://travis-ci.org/StateFarmIns/matterfront.svg)](https://travis-ci.org/StateFarmIns/matterfront)
 
 # Matterfront
 
