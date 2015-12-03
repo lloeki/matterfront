@@ -17,21 +17,23 @@ First, clone down this project, and then from within that directory in your favo
 You're now ready to start developing against your local mattermost installation. Make sure
 you have your `config.json` setup as noted in the steps below.
 
-## Configuring
+## Connecting to your team
 
-Create a `config.json` file in the `/src` directory. It should look like this:
+For now, Matterfront is limited to one team connection. The url for your team is pulled from a json file in your home directory.
 
+Create a text file at `~/.matterfront/state.json`. (Where `~` is your home directory). Make it look like this:
 
 ```json
 {
-    "url": "https://mattermost.example.com/team-name"
+  "teams": [{
+    "url": "http://some.server.com/some-team"
+  }]
 }
 ```
 
-Including the team name is optional but makes things incredibly smoother if
-you have disabled account creation and log in exclusively with GitLab SSO.
+You should be able to provide your credentials when Matterfront starts up.
 
-In the future, this will be settable from the UI.
+Support for adding multiple teams through the UI is coming soon.
 
 ## Testing
 
