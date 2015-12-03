@@ -1,11 +1,12 @@
 {
   "name": "matterfront",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Mattermost frontend app powered by electron",
   "homepage": "https://github.com/lloeki/matterfront",
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
   "contributors": [
-    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)"
+    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)",
+	"Chris Jaynes (https://github.com/geekytime)"
   ],
   "scripts": {
     "build": "electron-packager ./src Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
