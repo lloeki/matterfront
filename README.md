@@ -1,3 +1,5 @@
+![build](https://travis-ci.org/StateFarmIns/matterfront.svg)
+
 # Matterfront
 
 An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Linux, powered by [Electron](http://electron.atom.io).
