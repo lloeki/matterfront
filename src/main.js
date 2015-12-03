@@ -1,5 +1,7 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
+var menu = require('./menu.js');
+var path = require('path');
 var settings = require('./settings.js');
 
 require('crash-reporter').start();
@@ -23,7 +25,8 @@ var getFirstTeam = function(){
   if (Array.isArray(teams) && teams.length > 0){
     return teams[0].url;
   } else {
-    return 'file://' + __dirname + '/nosrc.html';
+    var noTeamsPath = path.join('file://', __dirname, 'browser/nosrc.html');
+    return noTeamsPath;
   }
 };
 
@@ -32,7 +35,8 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow(settings.get('window'));
 
   var team = getFirstTeam();
-  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(team));
+  var indexPath = path.join('file://', __dirname, 'browser/index.html');
+  mainWindow.loadUrl(indexPath + '?src=' + encodeURIComponent(team));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
@@ -76,5 +80,5 @@ app.on('ready', function() {
     mainWindow = null;
   });
 
-  require('./menu.js');
+  menu.load();
 });
