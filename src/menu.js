@@ -1,6 +1,11 @@
-
 var Menu = require('menu');
 var menuTemplate = require("./menu-template.js");
 
-menu = Menu.buildFromTemplate(menuTemplate);
-Menu.setApplicationMenu(menu);
+var menu = {};
+
+menu.load = function(){
+  appMenu = Menu.buildFromTemplate(menuTemplate);
+  Menu.setApplicationMenu(appMenu);
+};
+
+module.exports = menu;

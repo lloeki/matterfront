@@ -1,5 +1,6 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
+var menu = require('./menu.js');
 var path = require('path');
 var settings = require('./settings.js');
 
@@ -79,5 +80,5 @@ app.on('ready', function() {
     mainWindow = null;
   });
 
-  require('./menu.js');
+  menu.load();
 });
