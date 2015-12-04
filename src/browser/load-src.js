@@ -4,12 +4,7 @@ var NativeImage = remote.require('native-image');
 var mainWindow = remote.getCurrentWindow();
 
 document.addEventListener('DOMContentLoaded', function() {
-  var qs = window.location.search;
-  var src = decodeURIComponent(qs.replace('?', '').split('&')[0].split('=')[1]);
   var webview = document.querySelector('#mattermost-remote');
-
-  webview.setAttribute('src', src);
-
   var unreadCount = 0;
   var mentionCount = 0;
   var bounceId = null;
