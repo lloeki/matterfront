@@ -5,7 +5,7 @@ var App = React.createClass({
   render: function(){
     return (
       <div>
-        <TeamWebview teamUrl={this.props.teamUrl}/>
+        <TeamWebview teamUrl={this.props.teamUrl} notifications={this.props.notifications}/>
         <div id='overlay'></div>
       </div>
     );
