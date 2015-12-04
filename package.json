@@ -11,10 +11,12 @@
   "main": "src/main.js",
   "scripts": {
     "build": "electron-packager ./src Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
+    "js": "webpack",
     "lint": "eslint . --ignore-path .gitignore",
     "start": "electron .",
+    "start-watch": "webpack-dev-server --port 9000",
     "test": "mocha",
-    "watch": "mocha watch"
+    "test-watch": "mocha watch"
   },
   "electronVersion": "0.34.2",
   "repository": {
@@ -30,18 +32,27 @@
     "url": "https://github.com/lloeki/matterfront/issues"
   },
   "devDependencies": {
+    "babel-core": "~6.3.13",
+    "babel-loader": "~6.2.0",
+    "babel-preset-react": "~6.3.13",
     "chai": "~3.4.1",
+    "css-loader": "~0.23.0",
     "electron-prebuilt": "^0.34.2",
     "eslint": "~1.10.2",
     "ghooks": "~1.0.1",
-    "mocha": "~2.3.4"
+    "mocha": "~2.3.4",
+    "style-loader": "~0.13.0",
+    "webpack": "~1.12.9",
+    "webpack-dev-server": "~1.14.0"
   },
   "dependencies": {
     "electron-packager": "^5.1.1",
     "ini": "~1.3.4",
     "mkdirp": "~0.5.1",
     "nconf": "~0.8.2",
-    "path-extra": "~3.0.0"
+    "path-extra": "~3.0.0",
+    "react": "~0.14.3",
+    "react-dom": "~0.14.3"
   },
   "config": {
     "ghooks": {
