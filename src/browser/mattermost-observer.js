@@ -36,7 +36,4 @@ document.addEventListener("DOMContentLoaded", function() {
       childList: true
     });
   }
-
-  // initial one time notification
-  checkActivity();
 });
