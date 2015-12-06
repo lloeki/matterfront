@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/StateFarmIns/matterfront.svg)](https://travis-ci.org/StateFarmIns/matterfront)
+[![Build Status](https://travis-ci.org/lloeki/matterfront.svg?branch=master)](https://travis-ci.org/lloeki/matterfront)
 
 # Matterfront
 
