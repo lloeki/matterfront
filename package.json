@@ -1,6 +1,6 @@
 {
   "name": "matterfront",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Mattermost frontend app powered by electron",
   "homepage": "https://github.com/lloeki/matterfront",
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "electron-packager . Matterfront --out=dist --ignore='^/dist$' --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
-    "lint": "eslint . --ignore-path .gitignore",
+    "lint": "eslint ./src --ignore-path .gitignore",
     "start": "electron .",
     "test": "mocha",
     "watch": "mocha watch"
