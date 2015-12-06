@@ -36,7 +36,7 @@ app.on('ready', function() {
 
   var team = getFirstTeam();
   var indexPath = path.join('file://', __dirname, 'browser/index.html');
-  mainWindow.loadUrl(indexPath + '?src=' + encodeURIComponent(team));
+  mainWindow.loadURL(indexPath + '?src=' + encodeURIComponent(team));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
