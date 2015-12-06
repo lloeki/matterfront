@@ -9,7 +9,7 @@
 	"Chris Jaynes (https://github.com/geekytime)"
   ],
   "scripts": {
-    "build": "electron-packager . Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
+    "build": "electron-packager . Matterfront --out=dist --ignore='^/dist$' --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "lint": "eslint . --ignore-path .gitignore",
     "start": "electron .",
     "test": "mocha",
