@@ -1,11 +1,11 @@
 var React = require("react");
+var TeamWebview = require("./team-webview.jsx");
 
 var App = React.createClass({
   render: function(){
-    //These will be converted to React components
     return (
       <div>
-        <webview id='mattermost-remote' src partition='persist:mattermost' preload="webview.js"></webview>
+        <TeamWebview teamUrl={this.props.teamUrl} notifications={this.props.notifications}/>
         <div id='overlay'></div>
       </div>
     );

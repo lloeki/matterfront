@@ -23,7 +23,7 @@ app.on('window-all-closed', function() {
 var getFirstTeam = function(){
   var teams = settings.get('teams');
   if (Array.isArray(teams) && teams.length > 0){
-    return teams[0].url;
+    return teams[0];
   } else {
     var noTeamsPath = path.join('file://', __dirname, 'browser/nosrc.html');
     return noTeamsPath;
@@ -35,8 +35,9 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow(settings.get('window'));
 
   var team = getFirstTeam();
+  var teamUrl = encodeURIComponent(team.url);
   var indexPath = path.join('file://', __dirname, 'browser/index.html');
-  mainWindow.loadURL(indexPath + '?src=' + encodeURIComponent(team));
+  mainWindow.loadURL(indexPath + '?teamUrl=' + teamUrl);
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
