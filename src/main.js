@@ -32,7 +32,7 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow(settings.get('window'));
 
   var team = getFirstTeam();
-  mainWindow.loadUrl('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(team));
+  mainWindow.loadURL('file://' + __dirname + '/index.html' + '?src=' + encodeURIComponent(team));
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {
