@@ -1,6 +1,6 @@
 {
   "name": "matterfront",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Mattermost frontend app powered by electron",
   "homepage": "https://github.com/lloeki/matterfront",
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
@@ -10,15 +10,16 @@
   ],
   "main": "src/main.js",
   "scripts": {
-    "build": "electron-packager ./src Matterfront --out=dist --ignore='^/dist$' --prune --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
+    "build": "electron-packager . Matterfront --out=dist --ignore='^/dist$' --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "js": "webpack",
-    "lint": "eslint . --ignore-path .gitignore",
+    "lint": "eslint ./src --ignore-path .gitignore",
     "start": "electron .",
     "start-watch": "webpack-dev-server --port 9000",
     "test": "mocha",
     "test-watch": "mocha watch"
   },
-  "electronVersion": "0.34.2",
+  "main":"./src/main.js",
+  "electronVersion": "0.35.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/lloeki/matterfront"
@@ -37,7 +38,7 @@
     "babel-preset-react": "~6.3.13",
     "chai": "~3.4.1",
     "css-loader": "~0.23.0",
-    "electron-prebuilt": "^0.34.2",
+    "electron-prebuilt": "^0.35.4",
     "eslint": "~1.10.2",
     "ghooks": "~1.0.1",
     "mocha": "~2.3.4",
