@@ -4,8 +4,6 @@ var menu = require('./menu.js');
 var path = require('path');
 var settings = require('./settings.js');
 
-require('crash-reporter').start();
-
 settings.load();
 
 // Keep a global reference of the window object, if you don't, the window will
