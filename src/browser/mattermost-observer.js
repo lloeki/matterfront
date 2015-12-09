@@ -1,4 +1,4 @@
-var ipc = require('ipc');
+var ipc = require('electron').ipcRenderer;
 
 var notifyHost = function() {
   var mentionCount = getTotalMentionCount();
