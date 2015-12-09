@@ -37,6 +37,29 @@ You should be able to provide your credentials when Matterfront starts up.
 
 Support for adding multiple teams through the UI is coming soon.
 
+## Electron and Chrome command-line args
+
+[Electron supports a subset of Chrome command-line switches](https://github.com/atom/electron/blob/master/docs/api/chrome-command-line-switches.md) when it starts up the main Chromium window. These command-line switches can be set via a config file in your home dir.
+
+Create a text file at `~/.matterfront/config.json`. (Where `~` is your home directory), and include a `chrome-args` key, like this:
+
+```json
+{
+  "chrome-args": {
+    "remote-debugging-port":"2929",
+    "no-proxy-server": ""
+  }
+}
+```
+
+Matterfront will read this file and apply each switch when it starts up the app. Note that config options that don't have a value can specify a value of `""`.
+
+These values can also be specified via the developer command-line like this:
+
+```
+electron . --chrome-args:remote-debugging-port=2929 --chrome-args:no-proxy-server
+```
+
 ## Testing
 
 This project contains a [Vagrant](https://vagrantup.com) environment, consisting of
