@@ -1,0 +1,5 @@
+{
+  "chrome-args": {
+    "some-arg-name": "some-arg-value"
+  }
+}

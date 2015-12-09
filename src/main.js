@@ -1,10 +1,12 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
+var chromeArgs = require('./chrome-args.js');
 var menu = require('./menu.js');
 var path = require('path');
 var settings = require('./settings.js');
 
 settings.load();
+chromeArgs.apply(settings);
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
