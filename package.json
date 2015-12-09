@@ -8,7 +8,7 @@
     "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)",
     "Chris Jaynes (https://github.com/geekytime)"
   ],
-  "main": "src/main.js",
+  "main": "./src/main.js",
   "scripts": {
     "build": "electron-packager . Matterfront --out=dist --ignore='^/dist$' --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "js": "webpack",
@@ -18,7 +18,6 @@
     "test": "mocha",
     "test-watch": "mocha watch"
   },
-  "main":"./src/main.js",
   "electronVersion": "0.35.4",
   "repository": {
     "type": "git",
@@ -36,17 +35,23 @@
     "babel-core": "~6.3.13",
     "babel-loader": "~6.2.0",
     "babel-preset-react": "~6.3.13",
+    "babel-register": "~6.3.13",
     "chai": "~3.4.1",
+    "chai-jq": "0.0.9",
     "css-loader": "~0.23.0",
     "electron-prebuilt": "^0.35.4",
     "eslint": "~1.10.2",
     "ghooks": "~1.0.1",
     "mocha": "~2.3.4",
+    "razz": "~1.1.1",
     "style-loader": "~0.13.0",
     "webpack": "~1.12.9",
-    "webpack-dev-server": "~1.14.0"
+    "webpack-dev-server": "~1.14.0",
+    "zepto-node": "~1.0.0"
   },
   "dependencies": {
+    "bacon-dispatcher": "~0.9.9",
+    "baconjs": "~0.7.82",
     "electron-packager": "^5.1.1",
     "mkdirp": "~0.5.1",
     "nconf": "~0.8.2",

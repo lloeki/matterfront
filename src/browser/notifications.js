@@ -21,4 +21,6 @@ Notifications.prototype.update = function(){
   osNotify.update(this.mentionCount);
 };
 
+Notifications.instance = new Notifications();
+
 module.exports = Notifications;

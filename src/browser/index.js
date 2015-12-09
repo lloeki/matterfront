@@ -1,24 +1,16 @@
 var App = require("./app.jsx");
-var Notifications = require("./notifications.js");
-var qs = require("qs");
+var connectionObserver = require("./connection-observer.js");
 var React = require("react");
 var ReactDOM = require("react-dom");
+var teamObserver = require("./team-observer.js");
 require('./index.css');
 
-console.log("Chrome " + process.versions['chrome']);
-console.log("Node " + process.versions['node']);
-console.log("Electron " + process.versions['electron']);
-
-var appState = {};
-var queryString = qs.parse(window.location.search.slice(1));
-var teamUrl = queryString.teamUrl;
-appState.teamUrl = teamUrl;
-appState.notifications = new Notifications();
-
 var domElement = document.querySelector("#app");
-var reactElement = React.createElement(App, appState);
+var reactElement = React.createElement(App);
 ReactDOM.render(reactElement, domElement);
+
+connectionObserver.start();
+teamObserver.start();
 
 //All of this code will be modularized properly and moved into React components
 require('./window-opener.js');
-require('./overlay.js');
