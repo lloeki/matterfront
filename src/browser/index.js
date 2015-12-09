@@ -5,7 +5,9 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 require('./index.css');
 
-process.versions['electron'];
+console.log("Chrome " + process.versions['chrome']);
+console.log("Node " + process.versions['node']);
+console.log("Electron " + process.versions['electron']);
 
 var appState = {};
 var queryString = qs.parse(window.location.search.slice(1));
