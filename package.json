@@ -51,6 +51,8 @@
     "zepto-node": "~1.0.0"
   },
   "dependencies": {
+    "bacon-dispatcher": "~0.9.9",
+    "baconjs": "~0.7.82",
     "electron-packager": "^5.1.1",
     "mkdirp": "~0.5.1",
     "nconf": "~0.8.2",
