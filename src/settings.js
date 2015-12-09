@@ -5,19 +5,16 @@ var path = require('path-extra');
 
 var settings = {};
 
-var getSettingsDir = function(homedir){
-  homedir = homedir || path.homedir();
-  return path.join(homedir, '.matterfront');
+var getStatePath = function(userDataPath){
+  return path.join(userDataPath, 'state.json');
 };
 
-var getStatePath = function(homedir){
-  var settingsDir = getSettingsDir(homedir);
-  return path.join(settingsDir, 'state.json');
+var getAppStatePath = function(appPath){
+  return path.join(appPath, 'state.json');
 };
 
-var getConfigPath = function(homedir){
-  var settingsDir = getSettingsDir(homedir);
-  return path.join(settingsDir, 'config.json');
+var getConfigPath = function(userDataPath){
+  return path.join(userDataPath, 'config.json');
 };
 
 var defaults = {
@@ -29,12 +26,14 @@ var defaults = {
   "showTrayIcon": false
 };
 
-settings.load = function(homedir){
-  var statePath = getStatePath(homedir);
-  var configPath = getConfigPath(homedir);
+settings.load = function(appPath, userDataPath){
+  var statePath = getStatePath(userDataPath);
+  var appStatePath = getAppStatePath(appPath);
+  var configPath = getConfigPath(userDataPath);
 
   nconf.argv();
-  nconf.file("state", statePath);
+  nconf.file('state', statePath);
+  nconf.file('appstate', appStatePath);
   nconf.file("config", configPath);
   nconf.defaults(defaults);
 };
@@ -54,11 +53,10 @@ settings.append = function(key, value){
   return settings._current;
 };
 
-settings.saveState = function(homedir){
-  var settingsDir = getSettingsDir(homedir);
-  mkdirp(settingsDir);
+settings.saveState = function(userDataPath){
+  mkdirp(userDataPath);
 
-  var statePath = getStatePath(homedir);
+  var statePath = getStatePath(userDataPath);
   var state = {
     teams: nconf.get("teams"),
     window: nconf.get("window")

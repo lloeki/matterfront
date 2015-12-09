@@ -1,0 +1,12 @@
+{
+  "teams": [{
+    "name": "teamA",
+    "url": "http://some.server.com/teamA"
+  }, {
+    "name": "teamB",
+    "url": "http://some.server.com/teamB"
+  }],
+  "window": {
+    "height": 1024
+  }
+}
