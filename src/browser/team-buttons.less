@@ -1,0 +1,28 @@
+.teamButtons {
+  font-size: 2em;
+  background-color: #2389d7;
+  height: 100vh;
+  flex-basis: 3em;
+
+  .teamButton {
+    display: flex;
+    background-color: white;
+    border-radius: 5px;
+    width: 2em;
+    height: 2em;
+    margin: .5em;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    flex-grow: 1;
+    cursor: pointer;
+
+    &.selected {
+      border: 4px solid #7DBE00;
+    }
+
+    &.not-selected {
+      border: none;
+    }
+  }
+}
