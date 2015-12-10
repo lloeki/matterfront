@@ -36,10 +36,8 @@ var TeamWebview = React.createClass({
       this.refs.webview.addEventListener('console-message', this.onConsoleMessage);
       this.refs.webview.addEventListener('ipc-message', this.onIPCMessage);
       this.refs.webview.addEventListener('new-window', this.onNewWindow);
+      window.addEventListener('focus', this.onWindowFocus);
     }
-
-    //THIS MUST BE REMOVED WHEN MULTI-TEAM SUPPORT IS ADDED
-    window.addEventListener('focus', this.onWindowFocus);
   },
   onDomReady: function(){
     appState.setConnectionState("online");
@@ -63,7 +61,9 @@ var TeamWebview = React.createClass({
     }
   },
   onWindowFocus: function(){
-    this.refs.webview.focus();
+    if (this.props.isSelected){
+      this.refs.webview.focus();
+    }
   }
 });
 
