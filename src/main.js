@@ -22,19 +22,11 @@ app.on('window-all-closed', function() {
   }
 });
 
-var getIndexPath = function(){
-  if (settings.get("dev-mode")){
-    return path.join('file://', __dirname, 'browser/index-dev.html');
-  } else {
-    return path.join('file://', __dirname, 'browser/index.html');
-  }
-};
-
 app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow(settings.get('window'));
 
-  var indexPath = getIndexPath();
+  var indexPath = path.join('file://', __dirname, 'browser/index.html');
   mainWindow.loadURL(indexPath);
 
   app.on('activate', function(e, hasVisibleWindows) {
