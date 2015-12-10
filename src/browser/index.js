@@ -9,6 +9,3 @@ var reactElement = React.createElement(App);
 ReactDOM.render(reactElement, domElement);
 
 teamObserver.start();
-
-//All of this code will be modularized properly and moved into React components
-require('./window-opener.js');
