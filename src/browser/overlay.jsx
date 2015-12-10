@@ -1,10 +1,11 @@
 var React = require("react");
+require("./overlay.less");
 
 var Overlay = React.createClass({
   render: function(){
     var style = this.getStyle();
     return (
-      <div id="overlay" style={style}></div>
+      <div className="overlay" style={style}></div>
     );
   },
   getStyle: function(){
