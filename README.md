@@ -37,6 +37,24 @@ You should be able to provide your credentials when Matterfront starts up.
 
 Support for adding multiple teams through the UI is coming soon.
 
+## --dev-mode
+
+In dev-mode, we use webpack's hot-loader plugin for streamlined development.
+
+To start the app in dev mode, start the webpack-dev-server like this:
+
+```
+npm run start-watch
+```
+
+Leave the dev server running, and then start matterfront in dev mode by running:
+
+```
+npm run start
+```
+
+Now as you edit your browser-side code, the app should update automatically, without even having to reload the page.
+
 ## Testing
 
 This project contains a [Vagrant](https://vagrantup.com) environment, consisting of
