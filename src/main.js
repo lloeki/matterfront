@@ -30,13 +30,21 @@ var getFirstTeam = function(){
   }
 };
 
+var getIndexPath = function(){
+  if (settings.get("dev-mode")){
+    return path.join('file://', __dirname, 'browser/index-dev.html');
+  } else {
+    return path.join('file://', __dirname, 'browser/index.html');
+  }
+};
+
 app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow(settings.get('window'));
 
   var team = getFirstTeam();
   var teamUrl = encodeURIComponent(team.url);
-  var indexPath = path.join('file://', __dirname, 'browser/index.html');
+  var indexPath = getIndexPath();
   mainWindow.loadURL(indexPath + '?teamUrl=' + teamUrl);
 
   app.on('activate', function(e, hasVisibleWindows) {
