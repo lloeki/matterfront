@@ -1,12 +1,13 @@
 var appState = require("./app-state.js");
-var qs = require("qs");
+//ipc is deprecated, but we can't switch to `require("electron")` until
+//the webpack target is updated to side-step `electron`. :frowning:
+var ipcRenderer = require('ipc');
 
 var teamObserver = {};
 
 teamObserver.start = function(){
-  var queryString = qs.parse(window.location.search.slice(1));
-  var teamUrl = queryString.teamUrl;
-  appState.setTeamUrl(teamUrl);
+  var teams = ipcRenderer.sendSync("fetch-teams");
+  teams.forEach(appState.addTeam);
 };
 
 module.exports = teamObserver;
