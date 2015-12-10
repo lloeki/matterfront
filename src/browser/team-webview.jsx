@@ -4,6 +4,7 @@ var Overlay = require("./overlay.jsx");
 var React = require("react");
 var ReactDOM = require("react-dom");
 var shell = require("shell");
+require("./team-webview.less");
 
 var TeamWebview = React.createClass({
   render: function(){
@@ -14,11 +15,12 @@ var TeamWebview = React.createClass({
     }
   },
   renderTeam: function(){
+    var selectedClass = this.props.isSelected ? "selected" : "not-selected";
     return (
-      <div>
+      <div className={`teamWebview ${selectedClass}`}>
         <Overlay connectionState={this.props.connectionState}/>
         <webview
-          id="mattermost-remote"
+          className="mattermost-remote"
           ref="webview"
           src={this.props.teamUrl}
           partition="persist:mattermost"
