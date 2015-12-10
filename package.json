@@ -13,7 +13,7 @@
     "build": "npm run js && electron-packager . Matterfront --out=dist --ignore='^/dist$' --asar --platform=all --arch=all --version=$npm_package_electronVersion --app-bundle-id='org.matterfront.app' --app-version=$npm_package_version --helper-bundle-id='org.matterfront.app.helper' --overwrite --icon=resources/mattermost",
     "js": "webpack",
     "lint": "eslint ./src --ignore-path .gitignore",
-    "start": "electron .",
+    "start": "electron . --dev-mode",
     "start-watch": "webpack-dev-server --port 9000",
     "test": "mocha",
     "test-watch": "mocha watch"
@@ -42,6 +42,8 @@
     "electron-prebuilt": "^0.35.4",
     "eslint": "~1.10.2",
     "ghooks": "~1.0.1",
+    "less": "~2.5.3",
+    "less-loader": "~2.2.2",
     "mocha": "~2.3.4",
     "razz": "~1.1.1",
     "style-loader": "~0.13.0",
@@ -56,7 +58,6 @@
     "mkdirp": "~0.5.1",
     "nconf": "~0.8.2",
     "path-extra": "~3.0.0",
-    "qs": "~6.0.1",
     "react": "~0.14.3",
     "react-dom": "~0.14.3"
   },

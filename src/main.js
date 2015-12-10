@@ -4,9 +4,11 @@ var chromeArgs = require('./chrome-args.js');
 var menu = require('./menu.js');
 var path = require('path');
 var settings = require('./settings.js');
+var teams = require("./teams.js");
 
 settings.load();
 chromeArgs.apply(settings);
+teams.listen();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -20,16 +22,6 @@ app.on('window-all-closed', function() {
   }
 });
 
-var getFirstTeam = function(){
-  var teams = settings.get('teams');
-  if (Array.isArray(teams) && teams.length > 0){
-    return teams[0];
-  } else {
-    var noTeamsPath = path.join('file://', __dirname, 'browser/nosrc.html');
-    return noTeamsPath;
-  }
-};
-
 var getIndexPath = function(){
   if (settings.get("dev-mode")){
     return path.join('file://', __dirname, 'browser/index-dev.html');
@@ -42,10 +34,8 @@ app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow(settings.get('window'));
 
-  var team = getFirstTeam();
-  var teamUrl = encodeURIComponent(team.url);
   var indexPath = getIndexPath();
-  mainWindow.loadURL(indexPath + '?teamUrl=' + teamUrl);
+  mainWindow.loadURL(indexPath);
 
   app.on('activate', function(e, hasVisibleWindows) {
     if (hasVisibleWindows) {

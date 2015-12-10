@@ -1,6 +1,8 @@
 var appState = require("./app-state.js");
 var React = require("react");
-var TeamWebview = require("./team-webview.jsx");
+var TeamButtons = require("./team-buttons.jsx");
+var TeamViews = require("./team-views.jsx");
+require("./app.less");
 
 var App = React.createClass({
   componentDidMount: function(){
@@ -12,8 +14,9 @@ var App = React.createClass({
   },
   render: function(){
     return (
-      <div>
-        <TeamWebview {...this.state}/>
+      <div className="app">
+        <TeamButtons {...this.state} />
+        <TeamViews {...this.state} />
       </div>
     );
   }

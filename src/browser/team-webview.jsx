@@ -3,6 +3,8 @@ var notifications = require("./notifications.js").instance;
 var Overlay = require("./overlay.jsx");
 var React = require("react");
 var ReactDOM = require("react-dom");
+var shell = require("shell");
+require("./team-webview.less");
 
 var TeamWebview = React.createClass({
   render: function(){
@@ -13,11 +15,12 @@ var TeamWebview = React.createClass({
     }
   },
   renderTeam: function(){
+    var selectedClass = this.props.isSelected ? "selected" : "not-selected";
     return (
-      <div>
+      <div className={`teamWebview ${selectedClass}`}>
         <Overlay connectionState={this.props.connectionState}/>
         <webview
-          id="mattermost-remote"
+          className="mattermost-remote"
           ref="webview"
           src={this.props.teamUrl}
           partition="persist:mattermost"
@@ -34,13 +37,15 @@ var TeamWebview = React.createClass({
       this.refs.webview.addEventListener('dom-ready', this.onDomReady);
       this.refs.webview.addEventListener('console-message', this.onConsoleMessage);
       this.refs.webview.addEventListener('ipc-message', this.onIPCMessage);
+      this.refs.webview.addEventListener('new-window', this.onNewWindow);
+      window.addEventListener('focus', this.onWindowFocus);
     }
-
-    //THIS MUST BE REMOVED WHEN MULTI-TEAM SUPPORT IS ADDED
-    window.addEventListener('focus', this.onWindowFocus);
   },
   onDomReady: function(){
     appState.setConnectionState("online");
+  },
+  onNewWindow: function(event){
+    shell.openExternal(event.url);
   },
   onConsoleMessage: function(event){
     console.info('Mattermost: ', event.message);
@@ -58,7 +63,9 @@ var TeamWebview = React.createClass({
     }
   },
   onWindowFocus: function(){
-    this.refs.webview.focus();
+    if (this.props.isSelected){
+      this.refs.webview.focus();
+    }
   }
 });
 

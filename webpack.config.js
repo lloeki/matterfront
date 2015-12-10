@@ -22,8 +22,8 @@ module.exports = {
         presets:['react']
       }
     }, {
-      test: /\.css$/,
-      loader: 'style!css'
+      test: /\.less$|\.css$/,
+      loader: "style!css!less"
     }]
   },
   plugins: [
