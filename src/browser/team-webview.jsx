@@ -3,6 +3,7 @@ var notifications = require("./notifications.js").instance;
 var Overlay = require("./overlay.jsx");
 var React = require("react");
 var ReactDOM = require("react-dom");
+var shell = require("shell");
 
 var TeamWebview = React.createClass({
   render: function(){
@@ -34,6 +35,7 @@ var TeamWebview = React.createClass({
       this.refs.webview.addEventListener('dom-ready', this.onDomReady);
       this.refs.webview.addEventListener('console-message', this.onConsoleMessage);
       this.refs.webview.addEventListener('ipc-message', this.onIPCMessage);
+      this.refs.webview.addEventListener('new-window', this.onNewWindow);
     }
 
     //THIS MUST BE REMOVED WHEN MULTI-TEAM SUPPORT IS ADDED
@@ -41,6 +43,9 @@ var TeamWebview = React.createClass({
   },
   onDomReady: function(){
     appState.setConnectionState("online");
+  },
+  onNewWindow: function(event){
+    shell.openExternal(event.url);
   },
   onConsoleMessage: function(event){
     console.info('Mattermost: ', event.message);
