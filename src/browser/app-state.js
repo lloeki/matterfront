@@ -5,7 +5,9 @@ var d = new Dispatcher();
 var appState = {};
 
 appState.initialState = {
-  "connectionState": "offline"
+  connectionState: "offline",
+  teams: {},
+  selectedTeam: ""
 };
 
 var onSetConnectionState = function(currentState, connectionState){
@@ -13,27 +15,43 @@ var onSetConnectionState = function(currentState, connectionState){
   return currentState;
 };
 
-var onSetTeamUrl = function(currentState, teamUrl){
-  currentState.teamUrl = teamUrl;
+var onAddTeam = function(currentState, team){
+  currentState.teams[team.name] = team;
+  var isFirstTeam = (Object.keys(currentState.teams).length === 1);
+  var noneSelected = (currentState.selectedTeam === "");
+  if (isFirstTeam && noneSelected) {
+    appState.selectTeam(team.name);
+  }
   return currentState;
 };
+
+var onSelectTeam = function(currentState, teamName){
+  currentState.selectedTeam = teamName;
+  return currentState;
+}
 
 appState.setConnectionState = function(connectionState){
   d.push("setConnectionState", connectionState);
 };
 
-appState.setTeamUrl = function(teamUrl){
-  d.push("setTeamUrl", teamUrl);
+appState.addTeam = function(team){
+  d.push("addTeam", team);
+};
+
+appState.selectTeam = function(teamName){
+  d.push("selectTeam", teamName);
 };
 
 appState.initStream = function(){
   var setConnectionStateStream = d.stream("setConnectionState");
-  var setTeamUrlStream = d.stream("setTeamUrl");
+  var addTeamStream = d.stream("addTeam");
+  var selectTeamStream = d.stream("selectTeam");
 
   var fullStream = Bacon.update(
     appState.initialState,
     [setConnectionStateStream], onSetConnectionState,
-    [setTeamUrlStream], onSetTeamUrl
+    [addTeamStream], onAddTeam,
+    [selectTeamStream], onSelectTeam
   );
   return fullStream;
 };
