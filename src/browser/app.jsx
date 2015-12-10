@@ -2,6 +2,7 @@ var appState = require("./app-state.js");
 var React = require("react");
 var TeamButtons = require("./team-buttons.jsx");
 var TeamViews = require("./team-views.jsx");
+require("./app.less");
 
 var App = React.createClass({
   componentDidMount: function(){
