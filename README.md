@@ -21,19 +21,25 @@ you have your `config.json` setup as noted in the steps below.
 
 ## Connecting to your team
 
-For now, Matterfront is limited to one team connection. The url for your team is pulled from a json file in your home directory.
+Matterfront can connect to multiple teams. For now, the names and urls or your teams are pulled from a json file in your home directory.
 
 Create a text file at `~/.matterfront/state.json`. (Where `~` is your home directory). Make it look like this:
 
 ```json
 {
   "teams": [{
-    "url": "http://some.server.com/some-team"
+    "name": "team1",
+    "url": "http://some.server.com/team1"
+  },{
+    "name": "team2",
+    "url": "http://some.server.com/team2"
   }]
 }
 ```
 
-You should be able to provide your credentials when Matterfront starts up.
+Note: each team must have a unique name specified in the config.
+
+You should be able to provide your credentials when the mattermost page loads the first time.
 
 Support for adding multiple teams through the UI is coming soon.
 
