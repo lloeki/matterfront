@@ -5,15 +5,21 @@ var webpack = require("webpack");
 var webpackConfig = require("./webpack.config.js");
 
 webpackConfig.entry.push("./src/browser/dev-mode.js");
+webpackConfig.devtool = "source-map";
 
 var compiler = webpack(webpackConfig);
 var webpackWatcher = compiler.watch({}, function(err, stats){
   if (err){
     console.error("webpack error:", err);
-  } else {
+  } else if (stats.compilation.errors && stats.compilation.errors.length){
+     console.error("webpack errors:")
+     stats.compilation.errors.forEach(function(error){
+       console.error(error.message);
+     });
+  }else {
     startAppOnFirstRun();
     var elapsed = stats.endTime - stats.startTime;
-    console.info("webpack success:", elapsed + "ms");
+    console.info("\n\nwebpack success:", elapsed + "ms");
   }
 });
 
