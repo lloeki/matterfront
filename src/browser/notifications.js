@@ -1,24 +1,17 @@
+var appState = require("./app-state.js");
 var osBadge = require("./os-badge.js");
 var osNotify = require("./os-notify.js");
 
-var Notifications = function(){
-  this.unreadCount = 0;
-  this.mentionCount = 0;
+var Notifications = function(){};
+
+Notifications.prototype.setUnreadCount = function(teamName, unreadCount){
+  osBadge.update(unreadCount);
+  appState.setUnreadCount(teamName, unreadCount);
 };
 
-Notifications.prototype.setUnreadCount = function(unreadCount){
-  this.unreadCount = unreadCount;
-  this.update();
-};
-
-Notifications.prototype.setMentionCount = function(mentionCount){
-  this.mentionCount = mentionCount;
-  this.update();
-};
-
-Notifications.prototype.update = function(){
-  osBadge.update(this.unreadCount);
-  osNotify.update(this.mentionCount);
+Notifications.prototype.setMentionCount = function(teamName, mentionCount){
+  osNotify.update(mentionCount);
+  appState.setMentionCount(teamName, mentionCount);
 };
 
 Notifications.instance = new Notifications();
