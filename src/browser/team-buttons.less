@@ -6,6 +6,7 @@
 
   .teamButton {
     display: flex;
+    position: relative;
     background-color: white;
     border-radius: 5px;
     width: 2em;
@@ -16,13 +17,51 @@
     font-family: sans-serif;
     flex-grow: 1;
     cursor: pointer;
+    box-sizing: content-box;
 
-    &.selected {
-      border: 4px solid #7DBE00;
+    .selectionTab {
+      position: absolute;
+      background-color: white;
+      height: 100%;
+      width: 20px;
+      border-radius: 5px;
+      left: -30px;
     }
 
-    &.not-selected {
-      border: none;
+    &.selected .selectionTab {
+      display: block;
+    }
+
+    &.not-selected .selectionTab {
+      display: none;
+    }
+
+    @badgeSize: 18px;
+    @badgeOffset: -4px;
+
+    .badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      width: @badgeSize;
+      height: @badgeSize;
+      border: 1px solid white;
+      border-radius: 9px;
+      color: white;
+      font-size: 11px;
+    }
+
+    .badge.unreadCount {
+      top: @badgeOffset;
+      right: @badgeOffset;
+      background-color: #B14632;
+    }
+
+    .badge.mentionCount {
+      bottom: @badgeOffset;
+      right: @badgeOffset;
+      background-color: #7DBE00;
     }
   }
 }

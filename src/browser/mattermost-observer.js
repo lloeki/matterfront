@@ -1,22 +1,5 @@
 var ipc = require('electron').ipcRenderer;
 
-var notifyHost = function() {
-  var mentionCount = getTotalMentionCount();
-  var unreadCount = $('.unread-title').length;
-
-  ipc.sendToHost('mention-count', mentionCount);
-  ipc.sendToHost('unread-count', unreadCount);
-};
-
-var getTotalMentionCount = function(){
-  var mentionCount = 0;
-  $('.unread-title.has-badge .badge').each(function() {
-    var badgeText = $(this).text();
-    mentionCount += parseInt(badgeText, 10);
-  });
-  return mentionCount;
-};
-
 document.addEventListener("DOMContentLoaded", function() {
   // observe the DOM for mutations, specifically the .ps-container
   // which contains all the sidebar channels
@@ -37,3 +20,24 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+var notifyHost = function() {
+  var mentionCount = getTotalMentionCount();
+  var unreadCount = getUnreadCount();
+
+  ipc.sendToHost('mention', mentionCount);
+  ipc.sendToHost('unread', unreadCount);
+};
+
+var getUnreadCount = function(){
+  return $('.unread-title').length;
+};
+
+var getTotalMentionCount = function(){
+  var mentionCount = 0;
+  $('.unread-title.has-badge .badge').each(function() {
+    var badgeText = $(this).text();
+    mentionCount += parseInt(badgeText, 10);
+  });
+  return mentionCount;
+};

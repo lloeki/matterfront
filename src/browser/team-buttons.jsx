@@ -1,5 +1,5 @@
-var appState = require("./app-state.js");
 var React = require("react");
+var TeamButton = require("./team-button.jsx");
 require("./team-buttons.less");
 
 var TeamButtons = React.createClass({
@@ -15,22 +15,10 @@ var TeamButtons = React.createClass({
     return names.map(this.renderButton);
   },
   renderButton: function(teamName){
-    var iconText = teamName.substr(0,1);
-    var isSelected = (teamName === this.props.selectedTeam);
-    var selectedClass = isSelected ? "selected" : "not-selected";
+    var team = this.props.teams[teamName];
     return (
-      <div
-        className={`teamButton ${selectedClass}`}
-        key={teamName}
-        onClick={this.onClick}
-        data-teamname={teamName}>
-        {iconText}
-      </div>
+      <TeamButton team={team} key={teamName} selectedTeam={this.props.selectedTeam}/>
     );
-  },
-  onClick: function(event){
-    var teamName = event.target.dataset.teamname;
-    appState.selectTeam(teamName);
   }
 });
 

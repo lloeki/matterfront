@@ -17,10 +17,10 @@ var TeamViews = React.createClass({
   renderView: function(teamName){
     var team = this.props.teams[teamName];
     var isSelected = (teamName == this.props.selectedTeam);
-    console.log(team.url);
     return (
       <TeamWebview
         teamUrl={team.url}
+        teamName={team.name}
         key={team.name}
         isSelected={isSelected}
         connectionState={this.props.connectionState}
