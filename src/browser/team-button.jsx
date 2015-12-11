@@ -16,8 +16,14 @@ var TeamButton = React.createClass({
       >
         <div className="selectionTab"></div>
         <div className="icon">{iconText}</div>
-        <div className="badge unreadCount">{unreadCount}</div>
-        <div className="badge mentionCount">{mentionCount}</div>
+        <div
+          className={`badge unreadCount count-${unreadCount}`}
+          title="Number of Unread Messages"
+        >{unreadCount}</div>
+        <div
+          className={`badge mentionCount count-${mentionCount}`}
+          title="Number of Times Mentioned"
+        >{mentionCount}</div>
       </div>
     );
   },
