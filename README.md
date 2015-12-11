@@ -19,7 +19,7 @@ First, clone down this project, and then from within that directory in your favo
 You're now ready to start developing against your local mattermost installation. Make sure
 you have your `config.json` setup as noted in the steps below.
 
-## Connecting to your team
+## Connecting to your teams
 
 Matterfront can connect to multiple teams. For now, the names and urls or your teams are pulled from a json file in your home directory.
 
@@ -66,23 +66,23 @@ These values can also be specified via the developer command-line like this:
 electron . --chrome-args:remote-debugging-port=2929 --chrome-args:no-proxy-server
 ```
 
-## --dev-mode
+## Running in Developer Mode
 
-In dev-mode, we use webpack's hot-loader plugin for streamlined development.
-
-To start the app in dev mode, start the webpack-dev-server like this:
-
-```
-npm run start-watch
-```
-
-Leave the dev server running, and then start matterfront in dev mode by running:
+To launch the app from source without building a distribution:
 
 ```
 npm run start
 ```
 
-Now as you edit your browser-side code, the app should update automatically, without even having to reload the page.
+To launch the app in watch mode:
+
+```
+npm run start-watch
+```
+
+While running in watch mode, any code changes will automatically be reflected in the running app as files are saved. If main process code changes, the whole app will restart. If browser-side code changes, the browser window will reload. Check out `./electron-watch.js` for details.
+
+Other dev tasks are also available as both "run-once" and "watch". Check out the `package.json` `scripts` block for details.
 
 ## Testing
 
