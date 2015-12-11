@@ -13,6 +13,7 @@ var TeamButton = React.createClass({
       <div
         className={`teamButton ${selectedClass}`}
         onClick={this.onClick}
+        title={team.name}
       >
         <div className="selectionTab"></div>
         <div className="icon">{iconText}</div>
