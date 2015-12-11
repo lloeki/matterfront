@@ -1,5 +1,5 @@
 var appState = require("./app-state.js");
-var notifications = require("./notifications.js").instance;
+var mattermostEvents = require("./mattermost-events.js");
 var Overlay = require("./overlay.jsx");
 var React = require("react");
 var ReactDOM = require("react-dom");
@@ -51,16 +51,8 @@ var TeamWebview = React.createClass({
     console.info('Mattermost: ', event.message);
   },
   onIPCMessage: function(event){
-    if (this.props.notifications){
-      if (event.channel === "unread-count"){
-        var unreadCount = parseInt(event.args[0], 10);
-        notifications.setUnreadCount(unreadCount);
-      }
-      else if (event.channel === "mention-count"){
-        var mentionCount = parseInt(event.args[0], 10);
-        notifications.setMentionCount(mentionCount);
-      }
-    }
+    event.teamName = this.props.teamName;
+    mattermostEvents.process(event);
   },
   onWindowFocus: function(){
     if (this.props.isSelected){
