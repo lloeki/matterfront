@@ -32,6 +32,13 @@ var TeamWebview = React.createClass({
   renderWaiting: function(){
     return (<div>Waiting for team...</div>);
   },
+  componentWillReceiveProps: function(newProps){
+    // we risk a render loop if we force
+    // a refresh every time we receive props
+    if (!this.props.isSelected && newProps.isSelected){
+      this.needsThemeRefresh = true;
+    }
+  },
   componentDidUpdate: function(){
     if (this.refs.webview){
       this.refs.webview.addEventListener('dom-ready', this.onDomReady);
@@ -39,6 +46,11 @@ var TeamWebview = React.createClass({
       this.refs.webview.addEventListener('ipc-message', this.onIPCMessage);
       this.refs.webview.addEventListener('new-window', this.onNewWindow);
       window.addEventListener('focus', this.onWindowFocus);
+
+      if (this.needsThemeRefresh && this.props.isSelected && this.refs.webview.send){
+        this.refs.webview.send("refreshThemeData");
+        this.needsThemeRefresh = false;
+      }
     }
   },
   onDomReady: function(){

@@ -4,8 +4,9 @@ require("./team-buttons.less");
 
 var TeamButtons = React.createClass({
   render: function(){
+    var style = this.calculateStyle();
     return (
-      <div className="teamButtons">
+      <div className="teamButtons" style={style}>
         {this.renderButtons()}
       </div>
     );
@@ -19,6 +20,17 @@ var TeamButtons = React.createClass({
     return (
       <TeamButton team={team} key={teamName} selectedTeam={this.props.selectedTeam}/>
     );
+  },
+  calculateStyle: function(){
+    var selectedTeam = this.props.teams[this.props.selectedTeam];
+    if (selectedTeam){
+      var style = {
+        backgroundColor: selectedTeam.themeData.sidebarBackground
+      };
+      return style;
+    } else {
+      return {};
+    }
   }
 });
 

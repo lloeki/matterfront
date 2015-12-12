@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
       childList: true
     });
   }
+
+  reportThemeData();
+  ipc.on("refreshThemeData", reportThemeData);
 });
 
 var notifyHost = function() {
@@ -40,4 +43,11 @@ var getTotalMentionCount = function(){
     mentionCount += parseInt(badgeText, 10);
   });
   return mentionCount;
+};
+
+var reportThemeData = function(){
+  var themeData = {
+    sidebarBackground: $(".sidebar--left .team__header").css("background-color")
+  };
+  ipc.sendToHost('themeData', themeData);
 };
