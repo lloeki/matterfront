@@ -44,7 +44,7 @@ var template = [{
     accelerator: 'CmdOrCtrl+Shift+R',
     click: function(item, focusedWindow) {
       if (focusedWindow){
-        focusedWindow.reload(true);
+        focusedWindow.webContents.reloadIgnoringCache();
       }
     }
   }, {
