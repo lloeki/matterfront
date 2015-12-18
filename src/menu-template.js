@@ -40,6 +40,14 @@ var template = [{
       }
     }
   }, {
+    label: 'Hard reload',
+    accelerator: 'CmdOrCtrl+Shift+R',
+    click: function(item, focusedWindow) {
+      if (focusedWindow){
+        focusedWindow.reload(true);
+      }
+    }
+  }, {
     label: 'Toggle Full Screen',
     accelerator: (function() {
       if (process.platform == 'darwin'){
