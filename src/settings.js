@@ -24,7 +24,8 @@ var defaults = {
   window: {
     width: 1024,
     height: 600
-  }
+  },
+  "chrome-args": {}
 };
 
 settings.load = function(homedir){
