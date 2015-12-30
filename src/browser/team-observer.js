@@ -1,6 +1,4 @@
 var appState = require("./app-state.js");
-//ipc is deprecated, but we can't switch to `require("electron")` until
-//the webpack target is updated to side-step `electron`. :frowning:
 var ipcRenderer = require('electron').ipcRenderer;
 
 var teamObserver = {};
