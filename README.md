@@ -19,41 +19,70 @@ First, clone down this project, and then from within that directory in your favo
 You're now ready to start developing against your local mattermost installation. Make sure
 you have your `config.json` setup as noted in the steps below.
 
-## Connecting to your team
+## Connecting to your teams
 
-For now, Matterfront is limited to one team connection. The url for your team is pulled from a json file in your home directory.
+Matterfront can connect to multiple teams. For now, the names and urls or your teams are pulled from a json file in your home directory.
 
 Create a text file at `~/.matterfront/state.json`. (Where `~` is your home directory). Make it look like this:
 
 ```json
 {
   "teams": [{
-    "url": "http://some.server.com/some-team"
+    "name": "team1",
+    "url": "http://some.server.com/team1"
+  },{
+    "name": "team2",
+    "url": "http://some.server.com/team2"
   }]
 }
 ```
 
-You should be able to provide your credentials when Matterfront starts up.
+Note: each team must have a unique name specified in the config.
+
+You should be able to provide your credentials when the mattermost page loads the first time.
 
 Support for adding multiple teams through the UI is coming soon.
 
-## --dev-mode
+## Electron and Chrome command-line args
 
-In dev-mode, we use webpack's hot-loader plugin for streamlined development.
+[Electron supports a subset of Chrome command-line switches](https://github.com/atom/electron/blob/master/docs/api/chrome-command-line-switches.md) when it starts up the main Chromium window. These command-line switches can be set via a config file in your home dir.
 
-To start the app in dev mode, start the webpack-dev-server like this:
+Create a text file at `~/.matterfront/config.json`. (Where `~` is your home directory), and include a `chrome-args` key, like this:
+
+```json
+{
+  "chrome-args": {
+    "remote-debugging-port":"2929",
+    "no-proxy-server": ""
+  }
+}
+```
+
+Matterfront will read this file and apply each switch when it starts up the app. Note that config options that don't have a value can specify a value of `""`.
+
+These values can also be specified via the developer command-line like this:
 
 ```
-npm run start-watch
+electron . --chrome-args:remote-debugging-port=2929 --chrome-args:no-proxy-server
 ```
 
-Leave the dev server running, and then start matterfront in dev mode by running:
+## Running in Developer Mode
+
+To launch the app from source without building a distribution:
 
 ```
 npm run start
 ```
 
-Now as you edit your browser-side code, the app should update automatically, without even having to reload the page.
+To launch the app in watch mode:
+
+```
+npm run start-watch
+```
+
+While running in watch mode, any code changes will automatically be reflected in the running app as files are saved. If main process code changes, the whole app will restart. If browser-side code changes, the browser window will reload. Check out `./electron-watch.js` for details.
+
+Other dev tasks are also available as both "run-once" and "watch". Check out the `package.json` `scripts` block for details.
 
 ## Testing
 

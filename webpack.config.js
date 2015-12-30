@@ -1,17 +1,11 @@
 var webpack = require('webpack');
-module.exports = {
-  target: "electron",
-  entry: {
-    app: ['webpack/hot/dev-server', './src/browser/index.js'],
-  },
+var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
+
+var options = {
+  entry: ['./src/browser/index.js'],
   output: {
     path: './browser-build',
-    filename: 'index.js',
-    publicPath: 'http://localhost:9000/browser-build/'
-  },
-  devServer: {
-    contentBase: './',
-    publicPath: 'http://localhost:9000/browser-build/'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
@@ -22,11 +16,12 @@ module.exports = {
         presets:['react']
       }
     }, {
-      test: /\.css$/,
-      loader: 'style!css'
+      test: /\.less$|\.css$/,
+      loader: "style!css!less"
     }]
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ]
+  }
 }
+
+options.target = webpackTargetElectronRenderer(options);
+
+module.exports = options;

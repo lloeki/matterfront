@@ -34,4 +34,8 @@ describe('settings', function(){
     settings.append('teams', 'http://localhost/team3');
     expect(settings.get('teams')).to.have.length(3);
   });
+
+  it('reads non-state settings from `config.json`', function(){
+    expect(settings.get('chrome-args')).to.have.property("some-arg-name", "some-arg-value");
+  });
 });
