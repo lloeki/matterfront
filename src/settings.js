@@ -15,18 +15,26 @@ var getStatePath = function(homedir){
   return path.join(settingsDir, 'state.json');
 };
 
+var getConfigPath = function(homedir){
+  var settingsDir = getSettingsDir(homedir);
+  return path.join(settingsDir, 'config.json');
+};
+
 var defaults = {
   window: {
     width: 1024,
     height: 600
-  }
+  },
+  "chrome-args": {}
 };
 
 settings.load = function(homedir){
   var statePath = getStatePath(homedir);
+  var configPath = getConfigPath(homedir);
 
   nconf.argv();
-  nconf.file(statePath);
+  nconf.file("state", statePath);
+  nconf.file("config", configPath);
   nconf.defaults(defaults);
 };
 
@@ -54,7 +62,7 @@ settings.saveState = function(homedir){
     teams: nconf.get("teams"),
     window: nconf.get("window")
   };
-  var content = JSON.stringify(state);
+  var content = JSON.stringify(state, null, '\t');
   fs.writeFileSync(statePath, content);
 };
 
