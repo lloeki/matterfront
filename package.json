@@ -1,6 +1,6 @@
 {
   "name": "matterfront",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Mattermost frontend app powered by electron",
   "homepage": "https://github.com/lloeki/matterfront",
   "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
@@ -20,7 +20,7 @@
     "test": "mocha",
     "test-watch": "mocha watch"
   },
-  "electronVersion": "0.35.4",
+  "electronVersion": "0.36.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/lloeki/matterfront"
@@ -40,9 +40,10 @@
     "babel-register": "~6.3.13",
     "chai": "~3.4.1",
     "chai-jq": "0.0.9",
+    "chokidar": "^1.4.1",
     "css-loader": "~0.23.0",
     "electron-connect": "~0.3.3",
-    "electron-prebuilt": "^0.35.4",
+    "electron-prebuilt": ">=0.36.2",
     "eslint": "~1.10.2",
     "ghooks": "~1.0.1",
     "less": "~2.5.3",
@@ -52,14 +53,15 @@
     "razz": "~1.1.1",
     "style-loader": "~0.13.0",
     "watch": "~0.16.0",
-    "webpack": "~1.12.9",
+    "webpack": "^1.12.9",
+    "webpack-target-electron-renderer": "^0.3.0",
     "zepto-node": "~1.0.0"
   },
   "dependencies": {
     "bacon-dispatcher": "~0.9.9",
     "baconjs": "~0.7.82",
     "electron-packager": "^5.1.1",
-    "mkdirp": "~0.5.1",
+    "mkdirp": "^0.5.1",
     "nconf": "~0.8.2",
     "path-extra": "~3.0.0",
     "react": "~0.14.3",

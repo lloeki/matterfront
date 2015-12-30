@@ -1,8 +1,8 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
+var electron = require('electron');
+var app = electron.app;
+var BrowserWindow = electron.BrowserWindow;
 var chromeArgs = require('./chrome-args.js');
 var menu = require('./menu.js');
-var path = require('path');
 var settings = require('./settings.js');
 var teams = require("./teams.js");
 
@@ -26,7 +26,7 @@ app.on('ready', function() {
   var quitting = false;
   mainWindow = new BrowserWindow(settings.get('window'));
 
-  var indexPath = path.join('file://', __dirname, 'browser/index.html');
+  var indexPath = `file://${__dirname}/browser/index.html`;
   mainWindow.loadURL(indexPath);
 
   app.on('activate', function(e, hasVisibleWindows) {
