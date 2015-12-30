@@ -40,11 +40,14 @@ var template = [{
       }
     }
   }, {
-    label: 'Hard reload',
+    label: 'Clear cache and reload',
     accelerator: 'CmdOrCtrl+Shift+R',
     click: function(item, focusedWindow) {
       if (focusedWindow){
-        focusedWindow.reload(true);
+        // TODO: works only because partition on webview gets lost
+        focusedWindow.webContents.session.clearCache(function () {
+          focusedWindow.reload(true);
+        });
       }
     }
   }, {
