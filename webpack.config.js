@@ -1,7 +1,7 @@
 var webpack = require('webpack');
+var webpackTargetElectronRenderer = require('webpack-target-electron-renderer');
 
-module.exports = {
-  target: "electron",
+var options = {
   entry: ['./src/browser/index.js'],
   output: {
     path: './browser-build',
@@ -21,3 +21,7 @@ module.exports = {
     }]
   }
 }
+
+options.target = webpackTargetElectronRenderer(options);
+
+module.exports = options;
