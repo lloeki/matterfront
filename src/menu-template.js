@@ -46,7 +46,7 @@ var template = [{
       if (focusedWindow){
         // TODO: works only because partition on webview gets lost
         focusedWindow.webContents.session.clearCache(function () {
-          focusedWindow.reload(true);
+          focusedWindow.reloadIgnoringCache();
         });
       }
     }
