@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   // observe the DOM for mutations, specifically the .ps-container
   // which contains all the sidebar channels
   var MutationObserver = window.MutationObserver;
-  var list = document.querySelector('.ps-container');
+  var list = document.querySelector('.sidebar--left');
 
   var observer = new MutationObserver(function(mutations) {
     if (mutations.length) {
