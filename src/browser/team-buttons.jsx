@@ -5,8 +5,9 @@ require("./team-buttons.less");
 var TeamButtons = React.createClass({
   render: function(){
     var style = this.calculateStyle();
+    var hideClass = this.hasMultipleTeams() ? "" : "hideTeamButtons";
     return (
-      <div className="teamButtons" style={style}>
+      <div className={"teamButtons " + hideClass} style={style}>
         {this.renderButtons()}
       </div>
     );
@@ -31,6 +32,9 @@ var TeamButtons = React.createClass({
     } else {
       return {};
     }
+  },
+  hasMultipleTeams: function(){
+    return Object.keys(this.props.teams).length > 1;
   }
 });
 
