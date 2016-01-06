@@ -1,23 +1,29 @@
 .teamButtons {
-  font-size: 2em;
+  font-size: 1.6em;
   background-color: #CCCCCC;
   height: 100vh;
-  flex-basis: 3em;
+  flex-basis: 2.7em;
+
+  &.hideTeamButtons {
+    display: none;
+  }
 
   .teamButton {
     display: flex;
     position: relative;
     background-color: white;
     border-radius: 5px;
-    width: 2em;
-    height: 2em;
+    width: 1em;
+    height: 1em;
     margin: .5em;
+    margin-left: 0.6em;
     justify-content: center;
     align-items: center;
     font-family: sans-serif;
     flex-grow: 1;
     cursor: pointer;
     box-sizing: content-box;
+    padding: 0.3em;
 
     .selectionTab {
       position: absolute;
@@ -26,6 +32,7 @@
       width: 20px;
       border-radius: 5px;
       left: -30px;
+      margin-top: -0.3em;
     }
 
     &.selected .selectionTab {
