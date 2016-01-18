@@ -57,7 +57,11 @@ app.on('ready', function() {
     }
     settings.saveState();
 
-    if (process.platform != 'darwin') { return; }
+    // Quit when the window is closed if not on OS X or if the tray icon is disabled.
+    if (process.platform != 'darwin' && !tray.isEnabled()) {
+      return;
+    }
+
     if (quitting) { return; }
 
     e.preventDefault();

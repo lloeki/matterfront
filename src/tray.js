@@ -10,15 +10,20 @@ var path = require('path');
 var defaultIcon = nativeImage.createFromPath(
   path.join(__dirname, '../resources/tray.png'));
 var unreadMessagesIcon = nativeImage.createFromPath(
-    path.join(__dirname, '../resources/tray-unread.png'));
+  path.join(__dirname, '../resources/tray-unread.png'));
 var mentionsIcon = nativeImage.createFromPath(
-      path.join(__dirname, '../resources/tray-mention.png'));
+  path.join(__dirname, '../resources/tray-mention.png'));
 
 var tray;
 var mainWindow;
 
 var unreadCount = 0;
 var mentionsCount = 0;
+
+// Returns true if the tray icon is enabled.
+function isEnabled() {
+  return tray != undefined;
+}
 
 function createMenu() {
   var menu = new Menu();
@@ -85,5 +90,6 @@ function enable(mainBrowserWindow) {
 
 
 module.exports = {
-  enable: enable
+  enable: enable,
+  isEnabled: isEnabled
 };
