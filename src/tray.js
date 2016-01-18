@@ -1,17 +1,17 @@
-const electron = require('electron');
-const Menu = electron.Menu;
-const MenuItem = electron.MenuItem;
-const Tray = electron.Tray;
-const nativeImage = electron.nativeImage;
-const ipc = electron.ipcMain;
-const app = require('app');
-const path = require('path');
+var electron = require('electron');
+var Menu = electron.Menu;
+var MenuItem = electron.MenuItem;
+var Tray = electron.Tray;
+var nativeImage = electron.nativeImage;
+var ipc = electron.ipcMain;
+var app = require('app');
+var path = require('path');
 
-const defaultIcon = nativeImage.createFromPath(
+var defaultIcon = nativeImage.createFromPath(
   path.join(__dirname, '../resources/tray.png'));
-const unreadMessagesIcon = nativeImage.createFromPath(
+var unreadMessagesIcon = nativeImage.createFromPath(
     path.join(__dirname, '../resources/tray-unread.png'));
-const mentionsIcon = nativeImage.createFromPath(
+var mentionsIcon = nativeImage.createFromPath(
       path.join(__dirname, '../resources/tray-mention.png'));
 
 var tray;
