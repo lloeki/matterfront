@@ -4,7 +4,7 @@ var MenuItem = electron.MenuItem;
 var Tray = electron.Tray;
 var nativeImage = electron.nativeImage;
 var ipc = electron.ipcMain;
-var app = require('app');
+var app = electron.app;
 var path = require('path');
 
 var defaultIcon = nativeImage.createFromPath(
