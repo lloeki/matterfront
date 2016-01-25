@@ -24,7 +24,7 @@ var TeamWebview = React.createClass({
           ref="webview"
           src={this.props.teamUrl}
           partition="persist:mattermost"
-          preload="mattermost-observer.js">
+          preload="preload.js">
         </webview>
       </div>
     );

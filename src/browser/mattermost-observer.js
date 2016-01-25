@@ -1,5 +1,4 @@
 var ipc = require('electron').ipcRenderer;
-require("./context-menu.js").load();
 
 document.addEventListener("DOMContentLoaded", function() {
   // observe the DOM for mutations, specifically the .ps-container
