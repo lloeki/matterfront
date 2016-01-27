@@ -1,14 +1,62 @@
-var remote = require('remote');
+var reload = function(item, focusedWindow) {
+  if (focusedWindow) {
+    focusedWindow.webContents.reload();
+  }
+};
 
-var template = [
+var windows_linux_template = [
   {
     label: 'Undo',
-    accelerator: 'Command+Z',
+    accelerator: 'CmdOrCtrl+Z',
+    role: 'undo:'
+  },
+  {
+    label: 'Redo',
+    accelerator: 'Shift+CmdOrCtrl+Z',
+    role: 'redo:'
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: 'Cut',
+    accelerator: 'CmdOrCtrl+X',
+    role: 'cut:'
+  },
+  {
+    label: 'Copy',
+    accelerator: 'CmdOrCtrl+C',
+    role: 'copy:'
+  },
+  {
+    label: 'Paste',
+    accelerator: 'CmdOrCtrl+V',
+    role: 'paste:'
+  },
+  {
+    label: 'Select All',
+    accelerator: 'CmdOrCtrl+A',
+    role: 'selectAll:'
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: 'Reload',
+    accelerator: 'CmdOrCtrl+R',
+    click: reload
+  }
+];
+
+var osx_template = [
+  {
+    label: 'Undo',
+    accelerator: 'CmdOrCtrl+Z',
     selector: 'undo:'
   },
   {
     label: 'Redo',
-    accelerator: 'Shift+Command+Z',
+    accelerator: 'Shift+CmdOrCtrl+Z',
     selector: 'redo:'
   },
   {
@@ -16,22 +64,22 @@ var template = [
   },
   {
     label: 'Cut',
-    accelerator: 'Command+X',
+    accelerator: 'CmdOrCtrl+X',
     selector: 'cut:'
   },
   {
     label: 'Copy',
-    accelerator: 'Command+C',
+    accelerator: 'CmdOrCtrl+C',
     selector: 'copy:'
   },
   {
     label: 'Paste',
-    accelerator: 'Command+V',
+    accelerator: 'CmdOrCtrl+V',
     selector: 'paste:'
   },
   {
     label: 'Select All',
-    accelerator: 'Command+A',
+    accelerator: 'CmdOrCtrl+A',
     selector: 'selectAll:'
   },
   {
@@ -39,9 +87,13 @@ var template = [
   },
   {
     label: 'Reload',
-    accelerator: 'Command+R',
-    click: function() { remote.getCurrentWindow().reload(); }
+    accelerator: 'CmdOrCtrl+R',
+    click: reload
   }
 ];
 
-module.exports = template;
+if (process.platform === 'darwin') {
+  module.exports = osx_template
+} else {
+  module.exports = windows_linux_template;
+}
