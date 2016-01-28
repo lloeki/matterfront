@@ -4,6 +4,15 @@ var reload = function(item, focusedWindow) {
   }
 };
 
+var comment = function(item, focusedWindow) {
+  var selection = document.getSelection();
+  if (selection.toString().length > 0) {
+    var textbox = document.getElementById("post_textbox");
+    textbox.value = "> " + selection;
+    textbox.focus();
+  }
+};
+
 var windows_linux_template = [
   {
     label: 'Undo',
@@ -45,6 +54,14 @@ var windows_linux_template = [
     label: 'Reload',
     accelerator: 'CmdOrCtrl+R',
     click: reload
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: 'Comment',
+    accelerator: 'Shift+CmdOrCtrl+C',
+    click: comment
   }
 ];
 
@@ -89,6 +106,14 @@ var osx_template = [
     label: 'Reload',
     accelerator: 'CmdOrCtrl+R',
     click: reload
+  },
+  {
+    type: 'separator'
+  },
+  {
+    label: 'Comment',
+    accelerator: 'Shift+CmdOrCtrl+C',
+    click: comment
   }
 ];
 
