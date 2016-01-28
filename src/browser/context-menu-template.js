@@ -13,7 +13,18 @@ var comment = function(item, focusedWindow) {
   }
 };
 
-var windows_linux_template = [
+var changeTemplateForOSx = function(obj){
+  //OSx uses the 'selector' key whereas Windows/Linux uses 'role'
+  for (var i=0; i < obj.length; i++) {
+    if (obj[i].role) {
+      obj[i].selector = obj[i].role;
+      delete obj[i].role;
+    }
+  }
+  return obj;
+};
+
+var template = [
   {
     label: 'Undo',
     accelerator: 'CmdOrCtrl+Z',
@@ -65,60 +76,8 @@ var windows_linux_template = [
   }
 ];
 
-var osx_template = [
-  {
-    label: 'Undo',
-    accelerator: 'CmdOrCtrl+Z',
-    selector: 'undo:'
-  },
-  {
-    label: 'Redo',
-    accelerator: 'Shift+CmdOrCtrl+Z',
-    selector: 'redo:'
-  },
-  {
-    type: 'separator'
-  },
-  {
-    label: 'Cut',
-    accelerator: 'CmdOrCtrl+X',
-    selector: 'cut:'
-  },
-  {
-    label: 'Copy',
-    accelerator: 'CmdOrCtrl+C',
-    selector: 'copy:'
-  },
-  {
-    label: 'Paste',
-    accelerator: 'CmdOrCtrl+V',
-    selector: 'paste:'
-  },
-  {
-    label: 'Select All',
-    accelerator: 'CmdOrCtrl+A',
-    selector: 'selectAll:'
-  },
-  {
-    type: 'separator'
-  },
-  {
-    label: 'Reload',
-    accelerator: 'CmdOrCtrl+R',
-    click: reload
-  },
-  {
-    type: 'separator'
-  },
-  {
-    label: 'Comment',
-    accelerator: 'Shift+CmdOrCtrl+C',
-    click: comment
-  }
-];
-
 if (process.platform === 'darwin') {
-  module.exports = osx_template
-} else {
-  module.exports = windows_linux_template;
+  template = changeTemplateForOSx(template);
 }
+
+module.exports = template
