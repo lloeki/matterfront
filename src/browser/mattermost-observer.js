@@ -29,7 +29,10 @@ var notifyHost = function() {
   var unreadCount = getUnreadCount();
 
   ipc.sendToHost('mention', mentionCount);
+  ipc.send('mention', mentionCount);
+   
   ipc.sendToHost('unread', unreadCount);
+  ipc.send('unread', unreadCount);
 };
 
 var getUnreadCount = function(){

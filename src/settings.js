@@ -25,7 +25,8 @@ var defaults = {
     width: 1024,
     height: 600
   },
-  "chrome-args": {}
+  "chrome-args": {},
+  "showTrayIcon": false
 };
 
 settings.load = function(homedir){

@@ -11,7 +11,7 @@ An application for [Mattermost](http://mattermost.org) for OS X, Windows, and Li
 First, clone down this project, and then from within that directory in your favorite terminal run:
 
 ```
->  npm install
+> npm install
 // installs packages....
 > npm link
 // creates a local symlink
@@ -23,7 +23,7 @@ you have your `config.json` setup as noted in the steps below.
 
 Matterfront can connect to multiple teams. For now, the names and urls or your teams are pulled from a json file in your home directory.
 
-Create a text file at `~/.matterfront/state.json`. (Where `~` is your home directory). Make it look like this:
+Create a text file at `~/.matterfront/config.json`. (Where `~` is your home directory). Make it look like this:
 
 ```json
 {
@@ -65,6 +65,18 @@ These values can also be specified via the developer command-line like this:
 ```
 electron . --chrome-args:remote-debugging-port=2929 --chrome-args:no-proxy-server
 ```
+
+## Enabling the tray icon
+
+Matterfront can show an icon in the tray, which is the notification area on Windows, or menu bar on OS X. To enable the tray icon, set the option `showTrayIcon` in your `config.json`, like this:
+
+```json
+{
+  "showTrayIcon": true
+}
+```
+
+If the tray icon is enabled, Matterfront will not quit when the window is closed. Quit the process using the corresponding menu item of the tray icon.
 
 ## Running in Developer Mode
 

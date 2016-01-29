@@ -1,6 +1,8 @@
 var chai = require("chai");
 var chaiJq = require("chai-jq");
 chai.use(chaiJq);
+var sinonChai = require("sinon-chai");
+chai.use(sinonChai);
 
 global.expect = chai.expect;
 

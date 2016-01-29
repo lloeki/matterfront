@@ -5,6 +5,7 @@ var chromeArgs = require('./chrome-args.js');
 var menu = require('./menu.js');
 var settings = require('./settings.js');
 var teams = require("./teams.js");
+var tray = require("./tray.js");
 
 settings.load();
 chromeArgs.apply(settings);
@@ -56,7 +57,11 @@ app.on('ready', function() {
     }
     settings.saveState();
 
-    if (process.platform != 'darwin') { return; }
+    // Quit when the window is closed if not on OS X or if the tray icon is disabled.
+    if (process.platform != 'darwin' && !tray.isEnabled()) {
+      return;
+    }
+
     if (quitting) { return; }
 
     e.preventDefault();
@@ -72,4 +77,10 @@ app.on('ready', function() {
   });
 
   menu.load();
+
+  // Show a system tray/menu bar icon if enabled in the settings.
+  if (settings.get('showTrayIcon') === true) {
+    tray.enable(mainWindow);
+  }
+
 });
