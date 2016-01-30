@@ -2,10 +2,10 @@
   "name": "matterfront",
   "version": "1.2.0",
   "description": "Mattermost frontend app powered by electron",
-  "homepage": "https://github.com/lloeki/matterfront",
-  "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/H3Chief)",
+  "homepage": "https://github.com/HackerHappyHour/matterfront",
+  "author": "Brian Vanderbusch <brian@hackerhappyhour.com> (https://github.com/LongLiveCHIEF)",
   "contributors": [
-    "Loic Nageleisen <loic.nageleisen@gmail.com> (http://raptu.re)",
+    "Loic Nageleisen (http://raptu.re)",
     "Chris Jaynes (https://github.com/geekytime)"
   ],
   "main": "./src/main.js",
