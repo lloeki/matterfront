@@ -9,7 +9,7 @@ describe("Overlay", function(){
     expect(el).to.have.$css("z-index", "-1");
   });
 
-  it ("shows when connectionState is not `online`", function(){
+  xit ("shows when connectionState is not `online`", function(){
     var el = $(razz.render(Overlay, {
       connnectionState: "offline"
     })).children().first();
