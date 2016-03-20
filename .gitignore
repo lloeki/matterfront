@@ -2,6 +2,8 @@
 /dist
 /config.json
 /src/config.json
+/state.json
+/src/state.json
 .tag*
 *npm-debug.log
 /.vagrant

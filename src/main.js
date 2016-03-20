@@ -7,7 +7,7 @@ var settings = require('./settings.js');
 var teams = require("./teams.js");
 var tray = require("./tray.js");
 
-settings.load();
+settings.load(app.getAppPath(), app.getPath('userData'));
 chromeArgs.apply(settings);
 teams.listen();
 
@@ -55,7 +55,7 @@ app.on('ready', function() {
       settings.set('window:width', bounds.width);
       settings.set('window:height', bounds.height);
     }
-    settings.saveState();
+    settings.saveState(app.getPath('userData'));
 
     // Quit when the window is closed if not on OS X or if the tray icon is disabled.
     if (process.platform != 'darwin' && !tray.isEnabled()) {
