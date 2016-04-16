@@ -20,6 +20,9 @@ var onSetConnectionState = function(currentState, connectionState){
 };
 
 var onAddTeam = function(currentState, team){
+  if (!team.name) {
+    team.name = team.url.replace(/[^:]*:\/\/[^\/]*\/([^/]*)(\/.*|$)/, '$1')
+  }
   team.unreadCount = 0;
   team.mentionCount = 0;
   team.themeData = defaultThemeData;

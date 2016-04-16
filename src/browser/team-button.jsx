@@ -4,7 +4,7 @@ var React = require("react");
 var TeamButton = React.createClass({
   render: function(){
     var team = this.props.team;
-    var iconText = team.name.substr(0,1);
+    var iconText = team.name.substr(0,1).toUpperCase();
     var isSelected = (team.name === this.props.selectedTeam);
     var selectedClass = isSelected ? "selected" : "not-selected";
     var unreadCount = this.processCount(team.unreadCount);
